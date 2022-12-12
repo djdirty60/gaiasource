@@ -123,58 +123,61 @@ class Importer(object):
 
 	@classmethod
 	def moduleLabel(self, module, binary = False, extra = None):
-		from lib.modules.tools import Tools
+		try:
+			from lib.modules.tools import Tools
 
-		moduleLibrary = None
-		moduleName = None
-		if Tools.isString(module):
-			moduleLibrary = self.module(module = module)
-			moduleName = module
-		elif module:
-			moduleLibrary = module
-			moduleName = module.__name__
+			moduleLibrary = None
+			moduleName = None
+			if Tools.isString(module):
+				moduleLibrary = self.module(module = module)
+				moduleName = module
+			elif module:
+				moduleLibrary = module
+				moduleName = module.__name__
 
-		type = None
-		details = []
-
-		if '.' in moduleName:
-			type = 'External'
-			if binary:
-				module = moduleName.split('.')
-
-				system = module[-1]
-				try: system = Loader.Labels[system]
-				except: system = [system.upper()]
-
-				python = module[-2].replace('_', '.')
-
-				details = system + ['Python ' + python]
-		else:
-			type = Loader.ModuleNative.capitalize() if moduleName else Loader.ModuleUnknown.capitalize()
-
-		if not details and moduleName:
-			from lib.modules.tools import Platform, Regex
-			platform = Platform.detect(full = False)
-
+			type = None
 			details = []
-			try: details.append(platform['system']['name'])
-			except: pass
-			try: details.append('64bit' if platform['architecture']['bits'] == Platform.Bits64 else '32bit')
-			except: pass
-			try: details.append(platform['architecture']['type'].replace('arm', 'ARM'))
-			except: pass
-			try: details.append('Python ' + Regex.extract(data = platform['python']['version'], expression = '(\d+\.\d+)'))
-			except: pass
 
-		version = Importer.moduleVersion(moduleLibrary)
-		if version: details.insert(0, version)
+			if '.' in moduleName:
+				type = 'External'
+				if binary:
+					module = moduleName.split('.')
 
-		if extra:
-			if Tools.isArray(extra): details.extend(extra)
-			else: details.append(extra)
+					system = module[-1]
+					try: system = Loader.Labels[system]
+					except: system = [system.upper()]
 
-		if details: return '%s (%s)' % (type, ' - '.join(details))
-		else: return str(type)
+					python = module[-2].replace('_', '.')
+
+					details = system + ['Python ' + python]
+			else:
+				type = Loader.ModuleNative.capitalize() if moduleName else Loader.ModuleUnknown.capitalize()
+
+			if not details and moduleName:
+				from lib.modules.tools import Platform, Regex
+				platform = Platform.detect(full = False)
+
+				details = []
+				try: details.append(platform['system']['name'])
+				except: pass
+				try: details.append('64bit' if platform['architecture']['bits'] == Platform.Bits64 else '32bit')
+				except: pass
+				try: details.append(platform['architecture']['type'].replace('arm', 'ARM'))
+				except: pass
+				try: details.append('Python ' + Regex.extract(data = platform['python']['version'], expression = '(\d+\.\d+)'))
+				except: pass
+
+			version = Importer.moduleVersion(moduleLibrary)
+			if version: details.insert(0, version)
+
+			if extra:
+				if Tools.isArray(extra): details.extend(extra)
+				else: details.append(extra)
+
+			if details: return '%s (%s)' % (type, ' - '.join(details))
+			else: return str(type)
+		except: # Module not detected.
+			return Loader.ModuleUnknown.capitalize()
 
 	###################################################################
 	# BINARIES

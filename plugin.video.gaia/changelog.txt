@@ -1,4 +1,7 @@
 
+[B]6.0.2 (2022.12.12)[/B]
+- Fixed module import label.
+
 [B]6.0.1 (2022.12.12)[/B]
 - Added Dutch strings file.
 
