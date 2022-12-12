@@ -6,7 +6,7 @@ msgstr ""
 
 msgctxt "#32001"
 msgid "Movies"
-msgstr ""
+msgstr "Films"
 
 msgctxt "#32002"
 msgid "Shows"
@@ -18,11 +18,11 @@ msgstr ""
 
 msgctxt "#32004"
 msgid "Progress Mode"
-msgstr ""
+msgstr "Voortgangsmodus"
 
 msgctxt "#32005"
 msgid "Entire Show"
-msgstr ""
+msgstr "Gehele Show"
 
 msgctxt "#32006"
 msgid "Plays"
@@ -30,11 +30,11 @@ msgstr ""
 
 msgctxt "#32007"
 msgid "Channels"
-msgstr ""
+msgstr "Kanalen"
 
 msgctxt "#32008"
 msgid "Tools"
-msgstr ""
+msgstr "Hulpmiddelen"
 
 msgctxt "#32009"
 msgid "Downloads"
@@ -42,7 +42,7 @@ msgstr ""
 
 msgctxt "#32010"
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 msgctxt "#32011"
 msgid "Genres"
@@ -54,79 +54,79 @@ msgstr ""
 
 msgctxt "#32013"
 msgid "People"
-msgstr ""
+msgstr "Mensen"
 
 msgctxt "#32014"
 msgid "Languages"
-msgstr ""
+msgstr "Talen"
 
 msgctxt "#32015"
 msgid "Certificates"
-msgstr ""
+msgstr "Certificaten"
 
 msgctxt "#32016"
 msgid "Networks"
-msgstr ""
+msgstr "Netwerken"
 
 msgctxt "#32017"
 msgid "Always"
-msgstr ""
+msgstr "Altijd"
 
 msgctxt "#32018"
 msgid "Most Popular"
-msgstr ""
+msgstr "Meest populair"
 
 msgctxt "#32019"
 msgid "This feature will configure the connection timeout of Kodi’s player in number of seconds. It can take some time to establish a connection to a file on a server. This especially applies to hoster links resolved through a debrid service. Debrid services might have to convert, process, or move files around before allowing them to be streamed. Kodi has a default timeout of 30 seconds, which might not be enough for some of these slower connections. Kodi will terminate the connection in such a case and streaming the file will not be possible. Waiting a little bit longer than the default timeout might allow you to stream these slow files.[CR][CR]Note that this is not a Gaia setting, but rather an advanced Kodi setting specified in the [I]advancedsettings.xml[/I]  file. This means that the cURL timeout will apply to Kodi globally, including all other addons. More info can be found at:[CR][CR]     [I]https://kodi.wiki/view/Advancedsettings.xml#network[/I][CR][CR][B]Kodi has to be restarted for this setting to take effect.[/B]"
-msgstr ""
+msgstr "Deze functie configureert de verbindingstime-out van Kodi's speler in seconden.  Het kan enige tijd duren om een ​​verbinding tot stand te brengen met een bestand op een server.  Dit geldt met name voor hosterkoppelingen die zijn opgelost via een debrid-service.  Debrid-services moeten mogelijk bestanden converteren, verwerken of verplaatsen voordat ze kunnen worden gestreamd.  Kodi heeft een standaard time-out van 30 seconden, wat misschien niet genoeg is voor sommige van deze langzamere verbindingen.  Kodi verbreekt in zo'n geval de verbinding en het streamen van het bestand is niet mogelijk.  Als u iets langer wacht dan de standaard time-out, kunt u deze langzame bestanden mogelijk streamen.[CR][CR]Merk op dat dit geen Gaia-instelling is, maar eerder een geavanceerde Kodi-instelling die is gespecificeerd in [I]advancedsettings.xml[/  ik] bestand.  Dit betekent dat de cURL-time-out wereldwijd van toepassing is op Kodi, inclusief alle andere add-ons.  Meer info is te vinden op:[CR][CR] [I]https://kodi.wiki/view/Advancedsettings.xml#network[/I][CR][CR][B]Kodi moet opnieuw worden opgestart voor  deze instelling van kracht.[/B]"
 
 msgctxt "#32020"
 msgid "A cURL timeout of [B]%s[/B] is already specified in the advanced settings. Do you want to [B]adjust[/B] the current setting or [B]reset[/B] them to Kodi's default configuration?"
-msgstr ""
+msgstr "Een cURL-time-out van [B]%s[/B] is al gespecificeerd in de geavanceerde instellingen.  Wil je de huidige instelling [B]aanpassen[/B] of ze [B]resetten[/B] naar de standaardconfiguratie van Kodi?"
 
 msgctxt "#32021"
 msgid "The advanced settings could not be edited and the cURL timeout was not set. This might be due to write permission of the advanced settings file."
-msgstr ""
+msgstr "De geavanceerde instellingen konden niet worden bewerkt en de cURL-time-out was niet ingesteld.  Dit kan te wijten zijn aan schrijfrechten van het bestand met geavanceerde instellingen."
 
 msgctxt "#32022"
 msgid "Your cURL timeout was reset to default. Please restart Kodi for the settings to take effect."
-msgstr ""
+msgstr "Uw cURL-time-out is teruggezet naar de standaardwaarde.  Start Kodi opnieuw op om de instellingen van kracht te laten worden."
 
 msgctxt "#32023"
 msgid "The cURL timeout is [B]%s[/B]. Do you want to [B]accept[/B] or [B]adjust[/B] the timeout?"
-msgstr ""
+msgstr "De cURL-time-out is [B]%s[/B].  Wilt u de time-out [B]accepteren[/B] of [B]aanpassen[/B]?"
 
 msgctxt "#32024"
 msgid "Your cURL timeout is now configured. Please restart Kodi for the settings to take effect."
-msgstr ""
+msgstr "Uw cURL-time-out is nu geconfigureerd.  Start Kodi opnieuw op om de instellingen van kracht te laten worden."
 
 msgctxt "#32025"
 msgid "Quaternary"
-msgstr ""
+msgstr "Kwartair"
 
 msgctxt "#32026"
 msgid "Quinary"
-msgstr ""
+msgstr "Quinair"
 
 msgctxt "#32027"
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 msgctxt "#32028"
 msgid "This feature will configure the retry attempts and timeout of Kodi's playlists. When scraping or streaming in Gaia is initiated externally, such as from other addons, widgets, the local library, or playlists, Kodi often shows an annoying error message:[CR][CR]      [I]Playback failed - One or more items failed to play. Check the log for more information abouth this message.[/I][CR][CR]These error messages can be suppressed by changing the retry attempts and timeout of Kodi's playlists.[CR][CR]Note that this is not a Gaia setting, but rather an advanced Kodi setting specified in the [I]advancedsettings.xml[/I]  file. This means that the playlist settings will apply to Kodi globally, including all other addons. More info can be found at:[CR][CR]     [I]https://kodi.wiki/view/Advancedsettings.xml# playlistretries [/I][CR][CR][B]Kodi has to be restarted for this setting to take effect.[/B]"
-msgstr ""
+msgstr "Deze functie configureert de nieuwe pogingen en time-out van Kodi's afspeellijsten.  Wanneer het scrapen of streamen in Gaia extern wordt gestart, zoals vanuit andere add-ons, widgets, de lokale bibliotheek of afspeellijsten, geeft Kodi vaak een irritante foutmelding weer:[CR][CR] [I]Afspelen mislukt - Een of meer items zijn mislukt  spelen.  Controleer het logboek voor meer informatie over dit bericht.[/I][CR][CR]Deze foutmeldingen kunnen worden onderdrukt door de nieuwe pogingen en de time-out van Kodi's afspeellijsten te wijzigen.[CR][CR]Let op: dit is geen Gaia  instelling, maar eerder een geavanceerde Kodi-instelling gespecificeerd in het bestand [I]advancedsettings.xml[/I].  Dit betekent dat de afspeellijstinstellingen wereldwijd van toepassing zijn op Kodi, inclusief alle andere add-ons.  Meer info is te vinden op:[CR][CR] [I]https://kodi.wiki/view/Advancedsettings.xml# playlistretries [/I][CR][CR][B]Kodi moet opnieuw worden opgestart voor  deze instelling van kracht.[/B]"
 
 msgctxt "#32029"
 msgid "The retry attempts and timeout of playlists is already specified in the advanced settings. Do you want to [B]adjust[/B] the current setting or [B]reset[/B] them to Kodi's default configuration?"
-msgstr ""
+msgstr "De nieuwe pogingen en time-out van afspeellijsten zijn al gespecificeerd in de geavanceerde instellingen.  Wil je de huidige instelling [B]aanpassen[/B] of ze [B]resetten[/B] naar de standaardconfiguratie van Kodi?"
 
 msgctxt "#32030"
 msgid "The advanced settings could not be edited and the retry attempts and timeout of playlists was not set. This might be due to write permission of the advanced settings file."
-msgstr ""
+msgstr "De geavanceerde instellingen konden niet worden bewerkt en de nieuwe pogingen en time-out van afspeellijsten waren niet ingesteld.  Dit kan te wijten zijn aan schrijfrechten van het bestand met geavanceerde instellingen."
 
 msgctxt "#32031"
 msgid "Discover"
-msgstr ""
+msgstr "Ontdekken"
 
 msgctxt "#32032"
 msgid "Collection"
@@ -134,7 +134,7 @@ msgstr ""
 
 msgctxt "#32033"
 msgid "Watchlist"
-msgstr ""
+msgstr "Kijklijst"
 
 msgctxt "#32034"
 msgid "IMDb"
@@ -142,31 +142,31 @@ msgstr ""
 
 msgctxt "#32035"
 msgid "Queries"
-msgstr ""
+msgstr "Vragen"
 
 msgctxt "#32036"
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 msgctxt "#32037"
 msgid "Progress"
-msgstr ""
+msgstr "Voortgang"
 
 msgctxt "#32038"
 msgid "Concurrency Connections"
-msgstr ""
+msgstr "Gelijktijdige verbindingen"
 
 msgctxt "#32039"
 msgid "Movie Lists"
-msgstr ""
+msgstr "Film Lijsten"
 
 msgctxt "#32040"
 msgid "Show Lists"
-msgstr ""
+msgstr "Show lijsten"
 
 msgctxt "#32041"
 msgid "Episode Lists"
-msgstr ""
+msgstr "Afleveringslijsten"
 
 msgctxt "#32042"
 msgid "Poster"
@@ -194,15 +194,15 @@ msgstr ""
 
 msgctxt "#32048"
 msgid "The retry attempts and timeout of playlists was reset to default. Please restart Kodi for the settings to take effect."
-msgstr ""
+msgstr "De nieuwe pogingen en time-out van afspeellijsten zijn teruggezet naar de standaardwaarden.  Start Kodi opnieuw op om de instellingen van kracht te laten worden."
 
 msgctxt "#32049"
 msgid "The retry attempts and timeout of playlists is now configured. Please restart Kodi for the settings to take effect."
-msgstr ""
+msgstr "De nieuwe pogingen en time-out van afspeellijsten zijn nu geconfigureerd.  Start Kodi opnieuw op om de instellingen van kracht te laten worden."
 
 msgctxt "#32050"
 msgid "Append Title"
-msgstr ""
+msgstr "Titel toevoegen"
 
 msgctxt "#32051"
 msgid "Prepend Title"
@@ -218,35 +218,35 @@ msgstr ""
 
 msgctxt "#32054"
 msgid "Seasons"
-msgstr ""
+msgstr "Seizoenen"
 
 msgctxt "#32055"
 msgid "Season"
-msgstr ""
+msgstr "Seizoen"
 
 msgctxt "#32056"
 msgid "File Extra"
-msgstr ""
+msgstr "Bestand extra"
 
 msgctxt "#32057"
 msgid "Progress Cleared"
-msgstr ""
+msgstr "Voortgang gewist"
 
 msgctxt "#32058"
 msgid "Could Not Clear Progress"
-msgstr ""
+msgstr "Kan voortgang niet wissen"
 
 msgctxt "#32059"
 msgid "Select To Save View"
-msgstr ""
+msgstr "Selecteer om weergave op te slaan"
 
 msgctxt "#32060"
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr ""
+msgstr "Januari|Februari|Maart|April|Mei|Juni|Juli|Augustus|September|Oktober|November|December"
 
 msgctxt "#32061"
 msgid "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
-msgstr ""
+msgstr "Maandag|Dinsdag|Woensdag|Donderdag|Vrijdag|Zaterdag|Zondag"
 
 msgctxt "#32062"
 msgid "Log"
@@ -262,23 +262,23 @@ msgstr ""
 
 msgctxt "#32065"
 msgid "Add To Playlist"
-msgstr ""
+msgstr "Toevoegen aan afspeellijst"
 
 msgctxt "#32066"
 msgid "Reload Skin"
-msgstr ""
+msgstr "Skin opnieuw laden"
 
 msgctxt "#32067"
 msgid "Reload Kodi"
-msgstr ""
+msgstr "Kodi opnieuw laden"
 
 msgctxt "#32068"
 msgid "Restart Kodi"
-msgstr ""
+msgstr "Herstart Kodi"
 
 msgctxt "#32069"
 msgid "Restart Device"
-msgstr ""
+msgstr "Herstart apparaat"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
@@ -286,23 +286,23 @@ msgstr ""
 
 msgctxt "#32071"
 msgid "Browse"
-msgstr ""
+msgstr "Bladeren"
 
 msgctxt "#32072"
 msgid "Refresh"
-msgstr ""
+msgstr "Vernieuwen"
 
 msgctxt "#32301"
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 msgctxt "#32302"
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 msgctxt "#32303"
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 msgctxt "#32304"
 msgid "Email"
@@ -314,31 +314,31 @@ msgstr ""
 
 msgctxt "#32306"
 msgid "Next Page"
-msgstr ""
+msgstr "Volgende pagina"
 
 msgctxt "#32307"
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 msgctxt "#32308"
 msgid "Progress Cleared On Trakt"
-msgstr ""
+msgstr "Voortgang gewist op Trakt"
 
 msgctxt "#32309"
 msgid "Could Not Clear Progress On Trakt"
-msgstr ""
+msgstr "Kon voortgang op Trakt niet wissen"
 
 msgctxt "#32310"
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 msgctxt "#32311"
 msgid "Limit"
-msgstr ""
+msgstr "Limiet"
 
 msgctxt "#32312"
 msgid "Time Limit"
-msgstr ""
+msgstr "Tijdslimiet"
 
 msgctxt "#32313"
 msgid "Image Limit"
@@ -346,7 +346,7 @@ msgstr ""
 
 msgctxt "#32314"
 msgid "Local"
-msgstr ""
+msgstr "Lokaal"
 
 msgctxt "#32315"
 msgid "Trakt"
@@ -354,31 +354,31 @@ msgstr ""
 
 msgctxt "#32316"
 msgid "Use image from %s if available"
-msgstr ""
+msgstr "Gebruik afbeelding van %s indien beschikbaar"
 
 msgctxt "#32317"
 msgid "Use random image if available"
-msgstr ""
+msgstr "Gebruik willekeurige afbeelding indien beschikbaar"
 
 msgctxt "#32318"
 msgid "Use %s image if available"
-msgstr ""
+msgstr "Gebruik %s afbeelding indien beschikbaar"
 
 msgctxt "#32319"
 msgid "Menus"
-msgstr ""
+msgstr "Menu's"
 
 msgctxt "#32320"
 msgid "Movie Arrivals"
-msgstr ""
+msgstr "Film aankomsten"
 
 msgctxt "#32321"
 msgid "Newly Featured"
-msgstr ""
+msgstr "Nieuw uitgelicht"
 
 msgctxt "#32322"
 msgid "Prefer %s image if available"
-msgstr ""
+msgstr "Geef de voorkeur aan %s afbeelding indien beschikbaar"
 
 msgctxt "#32323"
 msgid "Most Popular"
