@@ -159,9 +159,9 @@ class Importer(object):
 			details = []
 			try: details.append(platform['system']['name'])
 			except: pass
-			try: details.append('64bits' if platform['architecture']['bits'] == Platform.Bits64 else '32bits')
+			try: details.append('64bit' if platform['architecture']['bits'] == Platform.Bits64 else '32bit')
 			except: pass
-			try: details.append(platform['architecture']['type'])
+			try: details.append(platform['architecture']['type'].replace('arm', 'ARM'))
 			except: pass
 			try: details.append('Python ' + Regex.extract(data = platform['python']['version'], expression = '(\d+\.\d+)'))
 			except: pass

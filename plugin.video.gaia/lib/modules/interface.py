@@ -738,7 +738,7 @@ class Icon(object):
 	@classmethod
 	def reset(self, settings = True):
 		if settings:
-			Icon.ThemeData = None
+			Icon.ThemeData = {}
 
 	##############################################################################
 	# GENERAL

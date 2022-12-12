@@ -132,7 +132,7 @@ class Account(object):
 	@classmethod
 	def reset(self, settings = True):
 		if settings:
-			Account.Data = None
+			Account.Data = {}
 
 	##############################################################################
 	# GENERAL

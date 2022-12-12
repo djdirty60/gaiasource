@@ -7993,7 +7993,7 @@ class Platform(object):
 				elif Regex.match(data = architectureName, expression = '(arc)'): architectureType = Platform.ArchitectureArc
 
 				architectureLabel = architectureName
-				if architectureBits: architectureLabel = '%s (%d bits)' % (architectureLabel, architectureBits)
+				if architectureBits: architectureLabel = '%s (%dbit)' % (architectureLabel, architectureBits)
 
 		except: Logger.error()
 
