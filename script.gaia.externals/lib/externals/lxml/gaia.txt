@@ -1,0 +1,70 @@
+#########################################################################################################################
+
+LXML is about 30-40% faster than the html.parser module in BeatifulSoup, and could greatly improve the scraping performance.
+
+LXML has a problem. The binary library can be imported only ONCE. When trying to import the library again, the following error occurs:
+
+	ImportError: Interpreter change detected - this module can only be loaded into one interpreter per process.
+
+This happens both when importing LXML from Kodi's Python environment with "import lxml", and when importing a precompiled library (.so, .pyd, .dll) with "importlib". This means we could technically use LXML in Gaia during a single command/execution. However, any subsequent execution will not be able to import and use LXML again.
+For instance, we could use LXML to parse an IMDb list to create a menu. But when trying to scrape a movie from the list, the providers won't be able to import LXML anymore.
+
+There also does not exists a function in Python top unload a module. There is a very old bug report on Python's ticket system asking for a function to unload modules. A dev answered that this has been planned since Python 2, but requires a lot of changes (garbage collection, etc). Since this is not in Python 3 yet and the ticket is very old, unloading modules will probably not be added any time soon.
+
+#########################################################################################################################
+
+When Gaia uses:
+	
+	<reuselanguageinvoker>true</reuselanguageinvoker>
+
+Kodi will attempt to reuse the invoker. So the LXML module can be loaded, stored in a global variable, and then reused for subsequent executions with the same interpreter without getting the previous error (since the interpreter obviously does not change). The problem with this approach is that Kodi only "attempts" to reuse the invoker, but does not guarantee it. These are just some cases where Kodi starts a new invoker:
+
+	1. If a fatal exception is thrown in Gaia (that is not handled), Kodi initializes a new invoker.
+	2. If a skin widget loads a list from Gaia, Kodi initializes a new invoker.
+	3. If a scraping process is launched by clicking on a movie/episode in a widget, Kodi initializes a new invoker.
+	4. When launching Gaia from the main menu from Eminence with "ActivateWindow(Videos,plugin://plugin.video.gaia)", Kodi initializes a new invoker.
+	5. When launching Gaia in any other way than from the normal addon manager, Kodi initializes a new invoker.
+
+It is therefore not a reliable approach to hope that Kodi will use the same invoker for subsequent requests.
+
+#########################################################################################################################
+
+The single interpreter seems to have been become more common with libraries (lxml, re2, pyre2, etc) since Python 3.5. This is the C code from LXML (other libraries have identical/similar code):
+
+	#if CYTHON_PEP489_MULTI_PHASE_INIT
+		static CYTHON_SMALL_CODE int __Pyx_check_single_interpreter(void) {
+			static PY_INT64_T main_interpreter_id = -1;
+			PY_INT64_T current_id = PyInterpreterState_GetID(PyThreadState_Get()->interp);
+			if (main_interpreter_id == -1) {
+				main_interpreter_id = current_id;
+				return (unlikely(current_id == -1)) ? -1 : 0;
+			}
+			....
+			else if (unlikely(main_interpreter_id != current_id))
+			{
+				PyErr_SetString(
+				    PyExc_ImportError,
+				    "Interpreter change detected - this module can only be loaded into one interpreter per process.");
+				return -1;
+			}
+			return 0;
+		}
+	#endif
+
+One possible solution might be to compile LXML from scratch and disabling "CYTHON_PEP489_MULTI_PHASE_INIT" with the hope that the single interpreter is not checked anymore. More info on PEP489:
+
+https://peps.python.org/pep-0489/
+
+However, this would be beyond the scope of Gaia, and there are too many different OSs and architectures to manually compile for all of them.
+
+#########################################################################################################################
+
+Another solution would be to wait for Kodi 20. Since Kodi 15 people asked for LXML to be shipped with Kodi, hopefully it will be available in 20:
+
+https://forum.kodi.tv/showthread.php?tid=357725
+https://github.com/fuzzard/xbmc/commit/560f8ec338958a68d6c6888a43bbba4a862f6623
+https://github.com/fuzzard/xbmc/blob/560f8ec338958a68d6c6888a43bbba4a862f6623/tools/depends/target/pythonmodule-lxml/Makefile 
+
+I'm not sure if this will solve the "Interpreter change detected" problem. Not even sure if the Kodi devs are aware of this. There seems to be nothing special in the Makefile to address this issue. Even the URL in the Makefile (https://github.com/lxml/lxml/archive) does not work anymore and they use LXML v4.6.2 which is old (2020).
+
+#########################################################################################################################

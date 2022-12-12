@@ -1,0 +1,18 @@
+#########################################################################################################################
+
+Download:			https://github.com/ojii/pymaging
+					https://github.com/ojii/pymaging-png
+Current Version:	0.1 (2022-04-07)
+Used By:			QrCode
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from pymaging_png/from externals.pymaging.png/g' {} \;
+find ./ -type f -exec sed -i -e 's/from pymaging/from externals.pymaging/g' {} \;
+
+#########################################################################################################################
+
+Add the "pymaging-png" module as a sub-directory "png".
+Delete "tests" and "testdata" directories.
+
+#########################################################################################################################

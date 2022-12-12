@@ -1,0 +1,14 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/soupsieve/#files
+Current Version:	2.2 (2021-02-23)
+Used By:			BeautifulSoup
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from functools import lru_cache/try: from functools import lru_cache\nexcept: from externals.lrucache.lru import lru_cache/g' {} \;
+find ./ -type f -exec sed -i -e 's/import copyreg/try: import copyreg\nexcept: import copy_reg as copyreg/g' {} \;
+find ./ -type f -exec sed -i -e 's/from collections.abc import Hashable, Mapping/try: from collections.abc import Hashable, Mapping\nexcept: from collections import Hashable, Mapping/g' {} \;
+find ./ -type f -exec sed -i -e 's/import bs4/from externals import beautifulsoup as bs4/g' {} \;
+
+#########################################################################################################################

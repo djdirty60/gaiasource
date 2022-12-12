@@ -1,0 +1,17 @@
+#########################################################################################################################
+
+Download:			https://github.com/wroberts/pytimeparse
+Current Version:	1.1.8 (2021-02-23)
+Used By:			Gaia
+
+#########################################################################################################################
+
+Remove the commented-out month and year.
+
+Add to TIMEFORMATS a new one including year and month
+
+Replace MULTIPLIERS with precalculated values.
+
+Update regex of year, month, and week to also include decimal
+
+#########################################################################################################################

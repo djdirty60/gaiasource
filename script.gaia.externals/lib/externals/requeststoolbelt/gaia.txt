@@ -1,0 +1,14 @@
+#########################################################################################################################
+
+Download:			https://github.com/requests/toolbelt
+Current Version:	0.9.1 (2021-02-23)
+Used By:			CloudScraper
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/import requests/import externals.requests as requests/g' {} \;
+find ./ -type f -exec sed -i -e 's/from requests/from externals.requests/g' {} \;
+find ./ -type f -exec sed -i -e 's/from urllib3/from externals.urllib3/g' {} \;
+
+#########################################################################################################################
+

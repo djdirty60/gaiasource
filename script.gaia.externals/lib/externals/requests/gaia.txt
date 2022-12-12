@@ -1,0 +1,37 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/requests/#files
+Current Version:	2.27.1 (2022-04-28)
+Used By:			Gaia, TldExtract, CfScrape, CloudScraper, SpeedTest
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from urllib3/from externals.urllib3/g' {} \;
+find ./ -type f -exec sed -i -e 's/import urllib3/from externals import urllib3/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/import chardet/from externals import chardet/g' {} \;
+find ./ -type f -exec sed -i -e 's/from chardet/from externals.chardet/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/import idna/from externals import idna/g' {} \;
+find ./ -type f -exec sed -i -e 's/from certifi import where/from externals.certifi import where/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/from six/from externals.six.six/g' {} \;
+find ./ -type f -exec sed -i -e 's/import six/from externals.six import six/g' {} \;
+
+#########################################################################################################################
+
+In packages.py, comment out:
+
+	locals()[package] = __import__(package)
+
+And add this to the top of the file:
+
+	from externals import urllib3
+	from externals import idna
+	from externals import chardet
+	locals()['urllib3'] = urllib3
+	locals()['idna'] = idna
+	locals()['chardet'] = chardet
+
+#########################################################################################################################
+

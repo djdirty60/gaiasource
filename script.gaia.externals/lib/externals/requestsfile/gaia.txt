@@ -1,0 +1,14 @@
+#########################################################################################################################
+
+Download:			https://github.com/dashea/requests-file
+Current Version:	1.5.1 (2021-02-23)
+Used By:			TldExtract
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from requests/from externals.requests/g' {} \;
+find ./ -type f -exec sed -i -e 's/from six/from externals.six.six/g' {} \;
+find ./ -type f -exec sed -i -e 's/import six/from externals.six import six/g' {} \;
+
+#########################################################################################################################
+

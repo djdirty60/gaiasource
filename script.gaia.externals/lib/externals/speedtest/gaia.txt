@@ -1,0 +1,15 @@
+#########################################################################################################################
+
+Download:			https://github.com/sivel/speedtest-cli
+Current Version:	2.1.2 (2021-02-23)
+Used By:			Gaia
+
+#########################################################################################################################
+
+Kodi has replaced the Python sys.stdout/sys.stderr which does not have a fileno() function.
+Add GAIACODE to ignore log printing.
+Add GAIACODE to not split/convert ignoreids if the string is empty.
+
+In build_user_agent() change the user-agent, since platform.platform() fails on some Android systems.
+
+#########################################################################################################################

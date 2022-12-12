@@ -1,0 +1,2443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<views>50</views>
+	<zorder>0</zorder>
+	<defaultcontrol always="true">52000</defaultcontrol>
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+
+	<controls>
+
+		<!-- MAIN -->
+		<control type="group">
+			<left>0</left>
+			<top>0</top>
+			<width>100%</width>
+			<height>100%</height>
+			<visible>Integer.IsEqual(Window.Property(GaiaProgressFinished),1)</visible>
+
+			<!-- CONTEXT -->
+			<!-- Use a dummy control to focus on when showing the context menu. -->
+			<!-- Otherwise the context menu shows in the top corner, offest from the list control. -->
+			<control type="label" id="50000">
+				<left>640</left>
+				<top>200</top>
+				<width>1</width>
+				<height>1</height>
+				<visible>false</visible>
+			</control>
+
+			<!-- INFO PANEL -->
+			<!-- ID RANGE: [50001,50999] -->
+			<control type="group">
+				<left>0</left>
+				<top>570</top>
+				<width>1280</width>
+				<height>150</height>
+				<animation effect="slide" easing="out" tween="quadratic" start="0,150" delay="100" time="1000" condition="Integer.IsEqual(Window.Property(GaiaProgressFinished),1)">Conditional</animation>
+
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>100%</width>
+					<height>100%</height>
+					<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelbar.png</texture>
+				</control>
+
+				<control type="group">
+
+					<!-- QUALITY -->
+					<control type="group">
+						<left>0</left>
+						<top>-15</top>
+						<width>150</width>
+						<height>150</height>
+
+						<!--
+						Use multiple fixed icons instead of a single dynamic icon with colordiffuse.
+						The single icon will disappear if the context menu is opened.
+						This is because the colordiffuse value is reset.
+						Adding "colordiffuse" as a texture attribute will not hide the icon, but display it as white when the context is opened.
+						This only happens with colordiffuse, other elements like texture and visible do not have this problem.
+
+						<control type="image">
+							<colordiffuse>$INFO[Container(52000).ListItem.Property(GaiaColor)]</colordiffuse>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/quality$INFO[Container(52000).ListItem.Property(GaiaQuality)].png</texture>
+						</control>
+						-->
+
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHdultra)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hdultra)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhdultra.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd16k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd16k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd16k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd14k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd14k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd14k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd12k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd12k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd12k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd10k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd10k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd10k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd8k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd8k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd8k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd6k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd6k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd6k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd4k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd4k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd4k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd2k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd2k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd2k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd1080)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd1080)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd1080.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd720)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd720) | String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),hd)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityhd720.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd576)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd576)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd576.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd540)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd540)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd540.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd480)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd480) | String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd480.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd360)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd360)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd360.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd240)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd240)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd240.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd144)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),sd144)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitysd144.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr4k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr4k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr4k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr2k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr2k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr2k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr1080)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr1080)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr1080.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr720)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr720)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr720.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr576)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr576)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr576.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr540)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr540)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr540.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr480)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr480) | String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr480.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr360)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr360)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr360.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr240)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr240)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr240.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr144)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),scr144)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualityscr144.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam4k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam4k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam4k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam2k)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam2k)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam2k.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam720)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam720)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam720.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam576)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam576)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam576.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam540)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam540)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam540.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam480)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam480) | String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam480.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam360)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam360)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam360.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam240)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam240)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam240.png</texture>
+						</control>
+						<control type="image">
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam144)]</colordiffuse>
+							<visible>String.IsEqual(Container(52000).ListItem.Property(GaiaQuality),cam144)</visible>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/large/qualitycam144.png</texture>
+						</control>
+					</control>
+
+					<!-- TYPE -->
+					<control type="grouplist">
+						<left>0</left>
+						<top>100</top>
+						<width>150</width>
+						<height>28</height>
+						<orientation>horizontal</orientation>
+						<align>center</align>
+						<itemgap>0</itemgap>
+						<usecontrolcoords>true</usecontrolcoords>
+						<control type="group">
+							<left>-5</left>
+							<top>0</top>
+							<width>28</width>
+							<height>28</height>
+							<control type="image">
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorMain)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/$INFO[Container(52000).ListItem.Property(GaiaType)].png</texture>
+							</control>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>0</top>
+							<width>auto</width>
+							<height>28</height>
+							<font>font14</font>
+							<aligny>center</aligny>
+							<textcolor>$INFO[Window(10000).Property(GaiaColorMain)]</textcolor>
+							<label>[B][UPPERCASE]$INFO[Container(52000).ListItem.Property(GaiaType)][/UPPERCASE][/B]</label>
+						</control>
+					</control>
+
+					<!-- INFO1 -->
+					<control type="grouplist">
+						<left>155</left>
+						<top>-35</top>
+						<width>425</width>
+						<height>150</height>
+						<orientation>vertical</orientation>
+						<align>center</align>
+						<itemgap>28</itemgap>
+						<usecontrolcoords>true</usecontrolcoords>
+
+						<!-- STREAM -->
+						<control type="grouplist">
+							<width>425</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/provider.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>387</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaSource)]</label>
+							</control>
+						</control>
+
+						<!-- ACCESS -->
+						<control type="grouplist">
+							<width>425</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/network.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>387</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaAccess)]</label>
+							</control>
+						</control>
+
+						<!-- META -->
+						<control type="grouplist">
+							<width>425</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/categories.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>387</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaRelease2)]</label>
+							</control>
+						</control>
+
+					</control>
+
+					<!-- INFO2 -->
+					<control type="grouplist">
+						<left>600</left>
+						<top>-35</top>
+						<width>470</width>
+						<height>150</height>
+						<orientation>vertical</orientation>
+						<align>center</align>
+						<itemgap>28</itemgap>
+						<usecontrolcoords>true</usecontrolcoords>
+
+						<!-- VIDEO -->
+						<control type="grouplist">
+							<width>470</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/movies.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>432</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaVideo2)]</label>
+							</control>
+						</control>
+
+						<!-- AUDIO -->
+						<control type="grouplist">
+							<width>470</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/audio.png</texture>
+							</control>
+							<control type="label">
+								<width>auto</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaAudio2)]</label>
+							</control>
+							<control type="image">
+								<left>-5</left>
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag1))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag1)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag2))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag2)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag3))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag3)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag4))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag4)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag5))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag5)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag6))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag6)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag7))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag7)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag8))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag8)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaAudioFlag9))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaAudioFlag9)]</texture>
+							</control>
+						</control>
+
+						<!-- SUBTITLES -->
+						<control type="grouplist">
+							<width>470</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/description.png</texture>
+							</control>
+							<control type="label">
+								<width>auto</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaSubtitle2)]</label>
+							</control>
+							<control type="image">
+								<left>-5</left>
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag1))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag1)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag2))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag2)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag3))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag3)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag4))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag4)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag5))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag5)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag6))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag6)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag7))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag7)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag8))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag8)]</texture>
+							</control>
+							<control type="image">
+								<top>8</top>
+								<width>20</width>
+								<height>16</height>
+								<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaSubtitleFlag9))</visible>
+								<texture>$INFO[Container(52000).ListItem.Property(GaiaSubtitleFlag9)]</texture>
+							</control>
+						</control>
+
+					</control>
+
+					<!-- INFO3 -->
+					<control type="grouplist">
+						<left>1090</left>
+						<top>-21</top>
+						<width>180</width>
+						<height>150</height>
+						<orientation>vertical</orientation>
+						<align>center</align>
+						<itemgap>28</itemgap>
+						<usecontrolcoords>true</usecontrolcoords>
+
+						<!-- SIZE -->
+						<control type="grouplist">
+							<width>180</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/file.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>142</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaSize)]</label>
+							</control>
+						</control>
+
+						<!-- SEEDS -->
+						<control type="grouplist">
+							<width>180</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/up.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>142</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaSeeds)]</label>
+							</control>
+						</control>
+
+						<!-- LEECHES -->
+						<control type="grouplist">
+							<width>180</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/down.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>142</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaLeeches)]</label>
+							</control>
+						</control>
+
+						<!-- AGE -->
+						<control type="grouplist">
+							<width>180</width>
+							<orientation>horizontal</orientation>
+							<itemgap>6</itemgap>
+							<usecontrolcoords>true</usecontrolcoords>
+							<control type="image">
+								<width>32</width>
+								<height>32</height>
+								<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/progress.png</texture>
+							</control>
+							<control type="fadelabel">
+								<left>0</left> <!-- Important for some skins like Confluence -->
+								<top>0</top> <!-- Important for some skins like Confluence -->
+								<width>142</width>
+								<height>32</height>
+								<font>font14</font>
+								<scroll>true</scroll>
+								<scrollspeed>50</scrollspeed>
+								<resetonlabelchange>true</resetonlabelchange>
+								<aligny>center</aligny>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[Container(52000).ListItem.Property(GaiaTime)]</label>
+							</control>
+						</control>
+
+					</control>
+
+					<!-- NAME -->
+					<control type="grouplist">
+						<left>155</left>
+						<top>100</top>
+						<width>915</width>
+						<height>32</height>
+						<orientation>horizontal</orientation>
+						<itemgap>6</itemgap>
+						<usecontrolcoords>true</usecontrolcoords>
+						<control type="image">
+							<width>32</width>
+							<height>32</height>
+							<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+							<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/services.png</texture>
+						</control>
+						<control type="fadelabel">
+							<left>0</left> <!-- Important for some skins like Confluence -->
+							<top>0</top> <!-- Important for some skins like Confluence -->
+							<width>877</width>
+							<height>32</height>
+							<font>font14</font>
+							<scroll>true</scroll>
+							<scrollspeed>50</scrollspeed>
+							<resetonlabelchange>true</resetonlabelchange>
+							<aligny>center</aligny>
+							<textcolor>FFFFFFFF</textcolor>
+							<label>$INFO[Container(52000).ListItem.Property(GaiaName)]</label>
+						</control>
+					</control>
+
+				</control>
+			</control>
+
+			<!-- MAIN PANEL -->
+			<control type="group">
+				<!--
+					4x3:  <left>40</left>
+					16x9: <left>40</left>
+					20x9: <left>70</left>
+				-->
+				<left>[GAIAPANELLEFT]</left>
+				<top>20</top>
+				<width>100%</width>
+				<height>100%</height>
+
+				<!-- POSTER PANEL -->
+				<!-- ID RANGE: [51000,51999] -->
+				<control type="group">
+					<!--
+						4x3:
+							<top>130</top>
+							<width>360</width>
+							<height>400</height>
+						16x9:
+							<top>0</top>
+							<width>360</width>
+							<height>530</height>
+						20x9:
+							<top>0</top>
+							<width>300</width>
+							<height>530</height>
+					-->
+					<left>840</left>
+					<top>[GAIAPOSTERTOP]</top>
+					<width>[GAIAPOSTERWIDTH]</width>
+					<height>[GAIAPOSTERHEIGHT]</height>
+					<animation effect="slide" easing="out" tween="quadratic" start="380,0" delay="100" time="1000" condition="Integer.IsEqual(Window.Property(GaiaProgressFinished),1)">Conditional</animation>
+
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>100%</width>
+						<height>100%</height>
+						<aspectratio align="left" aligny="bottom">stretch</aspectratio>
+						<texture>$INFO[Container(52000).ListItem.Property(GaiaPoster1)]</texture>
+						<bordertexture border="15">special://home/addons/script.gaia.resources/resources/media/interface/panelposter.png</bordertexture>
+						<bordersize>15</bordersize>
+						<visible>Integer.IsEqual(Window(10000).Property(GaiaPosterStatic),1)</visible>
+					</control>
+
+					<control type="group">
+						<visible>Integer.IsEqual(Window(10000).Property(GaiaPosterStatic),0)</visible>
+						<control type="fadelabel" id="51000">
+							<scroll>false</scroll>
+			   				<scrollout>false</scrollout>
+							<scrollspeed>17</scrollspeed>
+							<pauseatend>30000</pauseatend>
+							<textcolor>00000000</textcolor>
+							<label>$INFO[Container(52000).ListItem.Property(GaiaPoster1)]</label>
+							<label>$INFO[Container(52000).ListItem.Property(GaiaPoster2)]</label>
+							<label>$INFO[Container(52000).ListItem.Property(GaiaPoster3)]</label>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>100%</width>
+							<height>100%</height>
+							<aspectratio align="left" aligny="bottom">stretch</aspectratio>
+							<texture>$INFO[Control.GetLabel(51000)]</texture>
+							<bordertexture border="15">special://home/addons/script.gaia.resources/resources/media/interface/panelposter.png</bordertexture>
+							<bordersize>15</bordersize>
+						</control>
+					</control>
+				</control>
+
+				<!-- STREAM PANEL -->
+				<!-- ID RANGE: [52000,52999] -->
+				<control type="group">
+					<left>0</left>
+					<top>0</top>
+					<width>820</width>
+					<height>530</height>
+					<animation effect="slide" easing="out" tween="quadratic" start="-840,0" delay="100" time="1000" condition="Integer.IsEqual(Window.Property(GaiaProgressFinished),1)">Conditional</animation>
+
+					<!-- BACKGROUND -->
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>100%</width>
+						<height>100%</height>
+						<texture>special://home/addons/script.gaia.resources/resources/media/interface/panellist.png</texture>
+					</control>
+
+					<!-- STREAM LIST -->
+					<control type="list" id="52000">
+						<left>0</left>
+						<top>0</top>
+						<width>805</width>
+						<height>524</height>
+						<visible>true</visible>
+						<viewtype label="535">list</viewtype>
+						<pagecontrol>52001</pagecontrol>
+						<orientation>vertical</orientation>
+						<scrolltime tween="sine">200</scrolltime>
+						<autoscroll>false</autoscroll>
+
+						<onleft>52001</onleft>
+						<onright>52001</onright>
+						<onup>52000</onup>
+						<ondown>52000</ondown>
+
+						<itemlayout width="805" height="75">
+
+							<!-- SEPARATOR -->
+							<control type="image">
+								<left>0</left>
+								<top>74</top>
+								<width>100%</width>
+								<height>1</height>
+								<colordiffuse>22555555</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/interface/pixel.png</texture>
+							</control>
+
+							<!-- NUMBER -->
+							<control type="label">
+								<left>0</left>
+								<top>7</top>
+								<width>75</width>
+								<height>20</height>
+								<font>font14</font>
+								<aligny>center</aligny>
+								<align>center</align>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[ListItem.Property(GaiaNumber)]</label>
+							</control>
+
+							<!-- QUALITY -->
+							<control type="group">
+								<left>0</left>
+								<top>12</top>
+								<width>75</width>
+								<height>75</height>
+
+								<!--
+								<control type="image">
+									<colordiffuse>$INFO[Container(52000).ListItem.Property(GaiaColor)]</colordiffuse>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/quality$INFO[Container(52000).ListItem.Property(GaiaQuality)].png</texture>
+								</control>
+								-->
+
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHdultra)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hdultra)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhdultra.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd16k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd16k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd16k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd14k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd14k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd14k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd12k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd12k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd12k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd10k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd10k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd10k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd8k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd8k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd8k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd6k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd6k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd6k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd720) | String.IsEqual(ListItem.Property(GaiaQuality),hd)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd480) | String.IsEqual(ListItem.Property(GaiaQuality),sd)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd144.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr720)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr480) | String.IsEqual(ListItem.Property(GaiaQuality),scr)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr144.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam720)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam480) | String.IsEqual(ListItem.Property(GaiaQuality),cam)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam144.png</texture>
+								</control>
+							</control>
+
+							<!-- PROVIDER -->
+							<control type="group">
+								<left>80</left>
+								<top>5</top>
+								<width>805</width>
+								<height>25</height>
+
+								<!-- [GAIATYPEPLAIN/] -->
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>805</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEPLAIN] -->
+
+								<!-- [GAIATYPEBASIC/] -->
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>805</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEBASIC] -->
+
+								<!-- [GAIATYPEICONS/] -->
+								<control type="image">
+									<left>-4</left>
+									<top>4</top>
+									<width>16</width>
+									<height>16</height>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),1)</visible>
+									<visible>String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/addons/mini/$INFO[ListItem.Property(GaiaIcon)].png</texture>
+								</control>
+								<control type="label">
+				  					<left>15</left>
+				  					<top>0</top>
+				  					<width>695</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),1)</visible>
+									<visible>String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>710</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),0) | !String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEICONS] -->
+
+							</control>
+
+							<!-- INFO1 -->
+							<control type="group">
+								<left>90</left>
+								<top>30</top>
+								<width>240</width>
+								<height>40</height>
+
+								<!-- ACCESS -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>240</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/network.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+					  					<left>28</left>
+										<top>0</top>
+										<width>212</width>
+										<height>20</height>
+					  					<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+					  					<textcolor>FFFFFFFF</textcolor>
+					  					<label>$INFO[ListItem.Property(GaiaInfo)]</label>
+					  				</control>
+								</control>
+
+								<!-- META -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>240</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/categories.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+					  					<left>28</left>
+										<top>0</top>
+										<width>212</width>
+										<height>20</height>
+					  					<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+					  					<textcolor>FFFFFFFF</textcolor>
+					  					<label>$INFO[ListItem.Property(GaiaRelease1)]</label>
+					  				</control>
+								</control>
+
+							</control>
+
+							<!-- INFO2 -->
+							<control type="group">
+								<left>340</left>
+								<top>30</top>
+								<width>200</width>
+								<height>40</height>
+
+								<!-- VIDEO -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>200</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/movies.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>172</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaVideo1)]</label>
+									</control>
+								</control>
+
+								<!-- AUDIO -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>200</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/audio.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>172</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaAudio1)]</label>
+									</control>
+								</control>
+							</control>
+
+							<!-- INFO3 -->
+							<control type="group">
+								<left>550</left>
+								<top>30</top>
+								<width>130</width>
+								<height>40</height>
+
+								<!-- LANGUAGE -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>130</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/languages.png</texture>
+									</control>
+									<control type="group">
+										<top>2</top>
+										<height>14</height>
+										<control type="image">
+											<left>28</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag1))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag1)]</texture>
+										</control>
+										<control type="image">
+											<left>48</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag2))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag2)]</texture>
+										</control>
+										<control type="image">
+											<left>68</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag3))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag3)]</texture>
+										</control>
+										<control type="image">
+											<left>88</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag4))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag4)]</texture>
+										</control>
+										<control type="image">
+											<left>108</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag5))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag5)]</texture>
+										</control>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>102</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaLanguage)]</label>
+									</control>
+								</control>
+
+								<!-- BANDWIDTH -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>130</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/speed.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>102</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaBandwidth)]</label>
+									</control>
+								</control>
+							</control>
+
+							<!-- INFO4 -->
+							<control type="group">
+								<left>690</left>
+								<top>30</top>
+								<width>110</width>
+								<height>40</height>
+
+								<!-- PEERS -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>110</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/people.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>82</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaPeers)]</label>
+									</control>
+								</control>
+
+								<!-- POPULARITY -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>110</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/popular.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>82</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaPopularity)]</label>
+									</control>
+								</control>
+							</control>
+
+						</itemlayout>
+
+						<focusedlayout width="805" height="75">
+
+							<!-- SEPARATOR -->
+							<control type="image">
+								<left>0</left>
+								<top>75</top>
+								<width>100%</width>
+								<height>1</height>
+								<colordiffuse>22555555</colordiffuse>
+								<texture>special://home/addons/script.gaia.resources/resources/media/interface/pixel.png</texture>
+							</control>
+
+							<!-- BACKGROUND -->
+							<control type="group">
+								<left>0</left>
+								<top>0</top>
+								<width>804</width>
+								<height>75</height>
+								<visible>Container(52000).Position(0)</visible> <!-- Use ID when debrid selection dialog pops up. -->
+								<animation type="Focus" reversible="false">
+									<effect type="zoom" center="402,37" start="97,70" end="100" time="200" tween="cubic" easing="out" />
+									<effect type="fade" start="0" end="100" time="200" />
+								</animation>
+								<control type="image">
+									<left>0</left>
+									<top>0</top>
+									<width>100%</width>
+									<height>100%</height>
+									<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelselectiontop.png</texture>
+								</control>
+								<control type="image">
+									<left>0</left>
+									<top>0</top>
+									<width>100%</width>
+									<height>100%</height>
+									<colordiffuse>$INFO[ListItem.Property(GaiaHighlight)]</colordiffuse>
+									<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelgradienttop.png</texture>
+								</control>
+							</control>
+							<control type="group">
+								<left>0</left>
+								<top>0</top>
+								<width>804</width>
+								<height>75</height>
+								<visible>!Container(52000).Position(0)</visible> <!-- Use ID when debrid selection dialog pops up. -->
+								<animation type="Focus" reversible="false">
+									<effect type="zoom" center="402,37" start="97,70" end="100" time="200" tween="cubic" easing="out" />
+									<effect type="fade" start="0" end="100" time="200" />
+								</animation>
+								<control type="image">
+									<left>0</left>
+									<top>0</top>
+									<width>100%</width>
+									<height>100%</height>
+									<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelselection.png</texture>
+								</control>
+								<control type="image">
+									<left>0</left>
+									<top>0</top>
+									<width>100%</width>
+									<height>100%</height>
+									<colordiffuse>$INFO[ListItem.Property(GaiaHighlight)]</colordiffuse>
+									<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelgradient.png</texture>
+								</control>
+							</control>
+
+							<!-- NUMBER -->
+							<control type="label">
+								<left>0</left>
+								<top>7</top>
+								<width>75</width>
+								<height>20</height>
+								<font>font14</font>
+								<aligny>center</aligny>
+								<align>center</align>
+								<textcolor>FFFFFFFF</textcolor>
+								<label>$INFO[ListItem.Property(GaiaNumber)]</label>
+							</control>
+
+							<!-- QUALITY -->
+							<control type="group">
+								<left>0</left>
+								<top>12</top>
+								<width>75</width>
+								<height>75</height>
+
+								<!--
+								<control type="image">
+									<colordiffuse>$INFO[Container(52000).ListItem.Property(GaiaColor)]</colordiffuse>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/quality$INFO[Container(52000).ListItem.Property(GaiaQuality)].png</texture>
+								</control>
+								-->
+
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHdultra)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hdultra)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhdultra.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd16k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd16k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd16k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd14k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd14k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd14k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd12k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd12k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd12k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd10k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd10k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd10k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd8k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd8k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd8k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd6k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd6k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd6k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorHd720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),hd720) | String.IsEqual(ListItem.Property(GaiaQuality),hd)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityhd720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd480) | String.IsEqual(ListItem.Property(GaiaQuality),sd)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorSd144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),sd144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitysd144.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr720)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr480) | String.IsEqual(ListItem.Property(GaiaQuality),scr)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorScr144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),scr144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualityscr144.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam4k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam4k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam4k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam2k)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam2k)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam2k.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam1080)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam1080)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam1080.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam720)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam720)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam720.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam576)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam576)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam576.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam540)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam540)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam540.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam480)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam480) | String.IsEqual(ListItem.Property(GaiaQuality),cam)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam480.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam360)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam360)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam360.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam240)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam240)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam240.png</texture>
+								</control>
+								<control type="image">
+									<colordiffuse>$INFO[Window(10000).Property(GaiaColorCam144)]</colordiffuse>
+									<visible>String.IsEqual(ListItem.Property(GaiaQuality),cam144)</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/small/qualitycam144.png</texture>
+								</control>
+							</control>
+
+							<!-- PROVIDER -->
+							<control type="group">
+								<left>80</left>
+								<top>5</top>
+								<width>805</width>
+								<height>25</height>
+
+								<!-- [GAIATYPEPLAIN/] -->
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>805</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEPLAIN] -->
+
+								<!-- [GAIATYPEBASIC/] -->
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>805</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEBASIC] -->
+
+								<!-- [GAIATYPEICONS/] -->
+								<control type="image">
+									<left>-4</left>
+									<top>4</top>
+									<width>16</width>
+									<height>16</height>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),1)</visible>
+									<visible>String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+									<texture>special://home/addons/script.gaia.resources/resources/media/icons/addons/mini/$INFO[ListItem.Property(GaiaIcon)].png</texture>
+								</control>
+								<control type="label">
+				  					<left>15</left>
+				  					<top>0</top>
+				  					<width>695</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),1)</visible>
+									<visible>String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<control type="label">
+				  					<left>0</left>
+				  					<top>0</top>
+				  					<width>710</width>
+				  					<height>25</height>
+				  					<font>font14</font>
+									<aligny>center</aligny>
+									<align>left</align>
+									<scroll>true</scroll>
+									<scrollspeed>50</scrollspeed>
+									<scrollsuffix>  •  </scrollsuffix>
+				  					<textcolor>FFFFFFFF</textcolor>
+									<visible>Integer.IsEqual(ListItem.Property(GaiaPrefix),0) | !String.IsEmpty(ListItem.Property(GaiaExtra))</visible>
+				  					<label>$INFO[ListItem.Property(GaiaSourceExtra)]</label>
+				  				</control>
+								<!-- [/GAIATYPEICONS] -->
+
+							</control>
+
+							<!-- INFO1 -->
+							<control type="group">
+								<left>90</left>
+								<top>30</top>
+								<width>240</width>
+								<height>40</height>
+
+								<!-- ACCESS -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>240</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/network.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+					  					<left>28</left>
+										<top>0</top>
+										<width>212</width>
+										<height>20</height>
+					  					<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+					  					<textcolor>FFFFFFFF</textcolor>
+					  					<label>$INFO[ListItem.Property(GaiaInfo)]</label>
+					  				</control>
+								</control>
+
+								<!-- META -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>240</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/categories.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+					  					<left>28</left>
+										<top>0</top>
+										<width>212</width>
+										<height>20</height>
+					  					<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+					  					<textcolor>FFFFFFFF</textcolor>
+					  					<label>$INFO[ListItem.Property(GaiaRelease1)]</label>
+					  				</control>
+								</control>
+
+							</control>
+
+							<!-- INFO2 -->
+							<control type="group">
+								<left>340</left>
+								<top>30</top>
+								<width>200</width>
+								<height>40</height>
+
+								<!-- VIDEO -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>200</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/movies.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>172</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaVideo1)]</label>
+									</control>
+								</control>
+
+								<!-- AUDIO -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>200</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/audio.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>172</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaAudio1)]</label>
+									</control>
+								</control>
+							</control>
+
+							<!-- INFO3 -->
+							<control type="group">
+								<left>550</left>
+								<top>30</top>
+								<width>130</width>
+								<height>40</height>
+
+								<!-- LANGUAGE -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>130</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/languages.png</texture>
+									</control>
+									<control type="group">
+										<top>2</top>
+										<height>14</height>
+										<control type="image">
+											<left>28</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag1))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag1)]</texture>
+										</control>
+										<control type="image">
+											<left>48</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag2))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag2)]</texture>
+										</control>
+										<control type="image">
+											<left>68</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag3))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag3)]</texture>
+										</control>
+										<control type="image">
+											<left>88</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag4))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag4)]</texture>
+										</control>
+										<control type="image">
+											<left>108</left>
+											<width>16</width>
+											<visible>!String.IsEmpty(Container(52000).ListItem.Property(GaiaLanguageFlag5))</visible>
+											<texture>$INFO[Container(52000).ListItem.Property(GaiaLanguageFlag5)]</texture>
+										</control>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>102</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaLanguage)]</label>
+									</control>
+								</control>
+
+								<!-- BANDWIDTH -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>130</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/speed.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>102</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaBandwidth)]</label>
+									</control>
+								</control>
+							</control>
+
+							<!-- INFO4 -->
+							<control type="group">
+								<left>690</left>
+								<top>30</top>
+								<width>110</width>
+								<height>40</height>
+
+								<!-- PEERS -->
+								<control type="group">
+									<left>0</left>
+									<top>0</top>
+									<width>110</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/people.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>82</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollspeed>50</scrollspeed>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaPeers)]</label>
+									</control>
+								</control>
+
+								<!-- POPULARITY -->
+								<control type="group">
+									<left>0</left>
+									<top>20</top>
+									<width>110</width>
+									<height>20</height>
+
+									<!-- [GAIATYPEBASIC/] -->
+									<control type="label">
+					  					<left>10</left>
+										<top>-7</top>
+										<width>60</width>
+										<height>24</height>
+					  					<font>font14</font>
+										<textcolor>$INFO[Window(10000).Property(GaiaColorDisabled)]</textcolor>
+					  					<label>[B]o[/B]</label>
+					  				</control>
+									<!-- [/GAIATYPEBASIC] -->
+
+									<!-- [GAIATYPEICONS/] -->
+									<control type="image">
+										<left>0</left>
+										<top>-2</top>
+										<width>24</width>
+										<height>24</height>
+										<colordiffuse>$INFO[Window(10000).Property(GaiaColorDisabled)]</colordiffuse>
+										<texture>special://home/addons/script.gaia.resources/resources/media/icons/white/mini/popular.png</texture>
+									</control>
+									<!-- [/GAIATYPEICONS] -->
+
+									<control type="label">
+										<left>28</left>
+										<top>0</top>
+										<width>82</width>
+										<height>20</height>
+										<font>font12</font>
+										<aligny>center</aligny>
+										<align>left</align>
+										<scroll>true</scroll>
+										<scrollsuffix>  •  </scrollsuffix>
+										<textcolor>FFFFFFFF</textcolor>
+										<label>$INFO[ListItem.Property(GaiaPopularity)]</label>
+									</control>
+								</control>
+							</control>
+
+						</focusedlayout>
+					</control>
+
+					<!-- SCROLLBAR -->
+					<control type="group">
+						<left>804</left>
+						<top>0</top>
+						<width>16</width>
+						<height>530</height>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>100%</width>
+							<height>100%</height>
+							<texture>special://home/addons/script.gaia.resources/resources/media/interface/panelscrollbar.png</texture>
+						</control>
+						<control type="scrollbar" id="52001">
+							<left>0</left>
+							<top>1</top>
+							<width>100%</width>
+							<height>528</height>
+							<onup>52001</onup>
+							<ondown>52001</ondown>
+							<onleft>52000</onleft>
+							<onright>52000</onright>
+							<showonepage>false</showonepage>
+							<orientation>vertical</orientation>
+							<pulseonselect>true</pulseonselect>
+							<texturesliderbackground colordiffuse="44444444" border="1">special://home/addons/script.gaia.resources/resources/media/interface/panelscrollbutton.png</texturesliderbackground>
+							<texturesliderbar colordiffuse="CCFFFFFF" border="1">special://home/addons/script.gaia.resources/resources/media/interface/panelscrollbutton.png</texturesliderbar>
+							<texturesliderbarfocus border="1">special://home/addons/script.gaia.resources/resources/media/interface/panelscrollbutton.png</texturesliderbarfocus>
+						</control>
+					</control>
+				</control>
+
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<views>50</views>
+	<zorder>0</zorder>
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+
+	<controls>
+		<control type="group" id="50000">
+			<visible>Integer.IsEqual(Window.Property(GaiaInitialized),1)</visible>
+
+			<!-- OVERLAY -->
+			<control type="image" id="50001">
+				<top>0</top>
+				<left>0</left>
+				<width>100%</width>
+				<height>100%</height>
+				<colordiffuse>E0000000</colordiffuse>
+				<texture>special://home/addons/script.gaia.resources/resources/media/interface/pixel.png</texture>
+				<visible>String.IsEmpty(Window.Property(GaiaOverlay)) | Integer.IsEqual(Window.Property(GaiaOverlay),1)</visible>
+			</control>
+
+			<!-- BOX -->
+			<control type="group" id="50010">
+
+				<!-- BOX - BORDER -->
+				<control type="image" id="50011">
+					<top>0</top>
+					<left>0</left>
+					<width>100%</width>
+					<height>100%</height>
+					<texture>special://home/addons/script.gaia.resources/resources/media/interface/dialogverticalouter.png</texture>
+				</control>
+
+				<!-- BOX - BACKGROUND -->
+				<control type="image" id="50012">
+					<top>0</top>
+					<left>0</left>
+					<width>100%</width>
+					<height>100%</height>
+					<texture diffuse="special://home/addons/script.gaia.resources/resources/media/interface/dialogverticalinner.png">$INFO[Window.Property(GaiaBackground)]</texture>
+				</control>
+
+				<!-- BOX - OVERLAY -->
+				<control type="image" id="50013">
+					<top>0</top>
+					<left>0</left>
+					<width>100%</width>
+					<height>100%</height>
+					<colordiffuse>DD101010</colordiffuse>
+					<texture diffuse="special://home/addons/script.gaia.resources/resources/media/interface/dialogverticalinner.png">special://home/addons/script.gaia.resources/resources/media/interface/pixel.png</texture>
+				</control>
+
+				<!-- BOX -SEPARATOR - TOP -->
+				<control type="image" id="50014">
+					<top>120</top>
+					<left>438</left>
+					<width>404</width>
+					<height>4</height>
+					<texture>special://home/addons/script.gaia.resources/resources/media/interface/separator.png</texture>
+				</control>
+
+				<!-- BOX - SEPARATOR - BOTTOM -->
+				<control type="image" id="50015">
+					<top>600</top>
+					<left>438</left>
+					<width>404</width>
+					<height>4</height>
+					<texture>special://home/addons/script.gaia.resources/resources/media/interface/separator.png</texture>
+				</control>
+
+				<!-- BOX - LOGO -->
+				<control type="image" id="50016">
+					<top>58</top>
+					<left>608</left>
+					<width>64</width>
+					<height>64</height>
+					<texture>$INFO[Window.Property(GaiaLogo)]</texture>
+				</control>
+
+				<!-- BOX - BUTTONS -->
+				<control type="group" id="50100">
+					<control type="button" id="50101">
+	      				<description>Change the QR color</description>
+						<left>465</left>
+						<top>600</top>
+						<width>64</width>
+						<height>64</height>
+						<texturenofocus>special://home/addons/script.gaia.resources/resources/media/icons/white/small/color.png</texturenofocus>
+						<texturefocus colordiffuse="$INFO[Window.Property(GaiaColorButton)]">special://home/addons/script.gaia.resources/resources/media/icons/white/small/color.png</texturefocus>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Focus</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Unfocus</animation>
+					</control>
+					<control type="button" id="50102">
+	      				<description>View the detailed info</description>
+						<left>535</left>
+						<top>600</top>
+						<width>64</width>
+						<height>64</height>
+						<texturenofocus>special://home/addons/script.gaia.resources/resources/media/icons/white/small/search.png</texturenofocus>
+						<texturefocus colordiffuse="$INFO[Window.Property(GaiaColorButton)]">special://home/addons/script.gaia.resources/resources/media/icons/white/small/search.png</texturefocus>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Focus</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Unfocus</animation>
+					</control>
+					<control type="button" id="50103">
+	      				<description>Close the dialog</description>
+						<left>605</left>
+						<top>600</top>
+						<width>64</width>
+						<height>64</height>
+						<texturenofocus>special://home/addons/script.gaia.resources/resources/media/icons/white/small/error.png</texturenofocus>
+						<texturefocus colordiffuse="$INFO[Window.Property(GaiaColorButton)]">special://home/addons/script.gaia.resources/resources/media/icons/white/small/error.png</texturefocus>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Focus</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Unfocus</animation>
+					</control>
+					<control type="button" id="50104">
+	      				<description>Copy the info to the clipboard</description>
+						<left>675</left>
+						<top>600</top>
+						<width>64</width>
+						<height>64</height>
+						<texturenofocus>special://home/addons/script.gaia.resources/resources/media/icons/white/small/copy.png</texturenofocus>
+						<texturefocus colordiffuse="$INFO[Window.Property(GaiaColorButton)]">special://home/addons/script.gaia.resources/resources/media/icons/white/small/copy.png</texturefocus>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Focus</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Unfocus</animation>
+					</control>
+					<control type="button" id="50105">
+	      				<description>Open in a browser</description>
+						<left>745</left>
+						<top>600</top>
+						<width>64</width>
+						<height>64</height>
+						<texturenofocus>special://home/addons/script.gaia.resources/resources/media/icons/white/small/browser.png</texturenofocus>
+						<texturefocus colordiffuse="$INFO[Window.Property(GaiaColorButton)]">special://home/addons/script.gaia.resources/resources/media/icons/white/small/browser.png</texturefocus>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Focus</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="80" end="100" time="150" reversible="false">Unfocus</animation>
+					</control>
+				</control>
+
+			</control>
+
+			<!-- QR -->
+			<control type="group" id="51000">
+
+				<!-- QR - CODE -->
+				<control type="image" id="51001">
+					<top>232</top>
+					<left>512</left>
+					<width>256</width>
+					<height>256</height>
+					<texture>$INFO[Window.Property(GaiaQr)]</texture>
+					<animation type="Conditional" condition="Integer.IsEqual(Window.Property(GaiaInitialized),1)">
+						<effect type="zoom" tween="cubic" start="0" end="100" center="640,360" time="500" />
+						<effect type="rotate" tween="cubic" start="0" end="360" center="640,360" time="500" />
+						<effect type="fade" tween="cubic" start="0" end="100" time="500" />
+					</animation>
+				</control>
+
+				<!-- QR - CIRCLE -->
+				<control type="group">
+					<visible>Integer.IsEqual(Window.Property(GaiaPlain),0)</visible>
+					<control type="image" id="51002">
+						<top>325</top>
+						<left>605</left>
+						<width>70</width>
+						<height>70</height>
+						<texture colordiffuse="$INFO[Window.Property(GaiaColor)]">special://home/addons/script.gaia.resources/resources/media/interface/circle.png</texture>
+						<animation type="Conditional" condition="Integer.IsEqual(Window.Property(GaiaInitialized),1)">
+							<effect type="zoom" tween="cubic" start="0" end="100" center="640,360" time="500" />
+						</animation>
+					</control>
+					<control type="image" id="51003">
+						<top>328</top>
+						<left>608</left>
+						<width>64</width>
+						<height>64</height>
+						<texture>special://home/addons/script.gaia.resources/resources/media/interface/circle.png</texture>
+						<animation type="Conditional" condition="Integer.IsEqual(Window.Property(GaiaInitialized),1)">
+							<effect type="zoom" tween="cubic" start="0" end="100" center="640,360" time="500" />
+						</animation>
+					</control>
+				</control>
+
+				<!-- QR - ICON -->
+				<control type="group">
+					<visible>Integer.IsEqual(Window.Property(GaiaPlain),0)</visible>
+					<control type="image" id="51004">
+						<top>333</top>
+						<left>613</left>
+						<width>54</width>
+						<height>54</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[Window.Property(GaiaIconLarge)]</texture>
+						<visible>!String.IsEmpty(Window.Property(GaiaIconLarge))</visible>
+						<animation type="Conditional" condition="Integer.IsEqual(Window.Property(GaiaInitialized),1)">
+							<effect type="zoom" tween="cubic" start="0" end="100" center="640,360" time="500" />
+							<effect type="rotate" tween="cubic" start="0" end="360" center="640,360" time="500" />
+							<effect type="fade" tween="cubic" start="0" end="100" time="500" />
+						</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="100" end="60" time="1000" pulse="true" condition="Integer.IsEqual(Window.Property(GaiaPlain),0)">Conditional</animation>
+					</control>
+					<control type="image" id="51005">
+						<top>338</top>
+						<left>618</left>
+						<width>44</width>
+						<height>44</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[Window.Property(GaiaIconSmall)]</texture>
+						<visible>!String.IsEmpty(Window.Property(GaiaIconSmall))</visible>
+						<animation type="Conditional" condition="Integer.IsEqual(Window.Property(GaiaInitialized),1)">
+							<effect type="zoom" tween="cubic" start="0" end="100" center="640,360" time="500" />
+							<effect type="rotate" tween="cubic" start="0" end="360" center="640,360" time="500" />
+							<effect type="fade" tween="cubic" start="0" end="100" time="500" />
+						</animation>
+						<animation effect="fade" easing="inout" tween="cubic" start="100" end="60" time="1000" pulse="true" condition="Integer.IsEqual(Window.Property(GaiaPlain),0)">Conditional</animation>
+					</control>
+				</control>
+
+				<!-- QR - BUTTON -->
+				<control type="button" id="51006">
+					<top>232</top>
+					<left>512</left>
+					<width>256</width>
+					<height>256</height>
+					<texturefocus></texturefocus>
+      				<texturenofocus></texturenofocus>
+				</control>
+
+			</control>
+
+			<!-- LABEL - DESCRIPTION -->
+			<control type="label" id="52001">
+				<left>460</left>
+				<top>140</top>
+				<width>360</width>
+				<height>75</height>
+				<font>[GAIAFONTSMALL]</font>
+				<aligny>center</aligny>
+				<align>center</align>
+				<wrapmultiline>true</wrapmultiline>
+				<label>$INFO[Window.Property(GaiaDescription)]</label>
+			</control>
+
+			<!-- LABEL - NAME -->
+			<control type="label" id="52002">
+				<top>495</top>
+				<width>100%</width>
+				<height>40</height>
+				<font>[GAIAFONTLARGE]</font>
+				<aligny>center</aligny>
+				<align>center</align>
+				<scroll>true</scroll>
+				<scrollspeed>50</scrollspeed>
+				<scrollsuffix>     •     </scrollsuffix>
+				<label>$INFO[Window.Property(GaiaNameValue)]</label>
+			</control>
+
+			<!-- LABEL - DATA (WITH CODE & WITHOUT NAME) -->
+			<control type="group">
+				<visible>!String.IsEmpty(Window.Property(GaiaCodeValue))</visible>
+				<visible>String.IsEmpty(Window.Property(GaiaNameValue))</visible>
+				<left>460</left>
+				<top>495</top>
+				<width>360</width>
+				<height>20</height>
+				<control type="label" id="52101">
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTTINY]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataLabel)]</label>
+				</control>
+				<control type="label" id="52102">
+					<top>20</top>
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTLARGE]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataValue)]</label>
+				</control>
+			</control>
+
+			<!-- LABEL - DATA (WITHOUT CODE & WITHOUT NAME) -->
+			<control type="group">
+				<visible>String.IsEmpty(Window.Property(GaiaCodeValue))</visible>
+				<visible>String.IsEmpty(Window.Property(GaiaNameValue))</visible>
+				<left>460</left>
+				<top>520</top>
+				<width>360</width>
+				<height>20</height>
+				<control type="label" id="52201">
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTTINY]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataLabel)]</label>
+				</control>
+				<control type="label" id="52202">
+					<top>20</top>
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTLARGE]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataValue)]</label>
+				</control>
+			</control>
+
+			<!-- LABEL - DATA (WITHOUT CODE & WITH NAME) -->
+			<control type="group">
+				<visible>String.IsEmpty(Window.Property(GaiaCodeValue))</visible>
+				<visible>!String.IsEmpty(Window.Property(GaiaNameValue))</visible>
+				<left>460</left>
+				<top>540</top>
+				<width>360</width>
+				<height>20</height>
+				<control type="label" id="52301">
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTTINY]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataLabel)]</label>
+				</control>
+				<control type="label" id="52302">
+					<top>20</top>
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTLARGE]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaDataValue)]</label>
+				</control>
+			</control>
+
+			<!-- LABEL - CODE -->
+			<control type="group">
+				<left>460</left>
+				<top>540</top>
+				<width>360</width>
+				<height>20</height>
+				<control type="label" id="52401">
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTTINY]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaCodeLabel)]</label>
+				</control>
+				<control type="label" id="52402">
+					<top>23</top>
+					<width>100%</width>
+					<height>100%</height>
+					<font>[GAIAFONTHUGE]</font>
+					<aligny>center</aligny>
+					<align>center</align>
+					<scroll>true</scroll>
+					<scrollspeed>50</scrollspeed>
+					<scrollsuffix>     •     </scrollsuffix>
+					<label>$INFO[Window.Property(GaiaCodeValue)]</label>
+				</control>
+			</control>
+
+		</control>
+
+	</controls>
+</window>

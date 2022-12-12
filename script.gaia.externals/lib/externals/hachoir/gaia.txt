@@ -1,0 +1,31 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/hachoir/#files
+Current Version:	3.1.2 (2021-02-23)
+Used By:			Gaia
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from hachoir./from externals.hachoir./g' {} \;
+find ./ -type f -exec sed -i -e 's/import hachoir./import externals.hachoir./g' {} \;
+
+#########################################################################################################################
+
+In parser.paser_list.py, replace:
+
+        module = __import__("hachoir.parser").parser
+	
+with
+	
+        import imp,os
+        name = '__init__'
+        path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '__init__.py'))
+        module = imp.load_source(name, path)
+
+  
+Add to metadata/metadata.py/MultipleMetadata
+
+    def groups(self):
+        return self.__groups
+
+#########################################################################################################################

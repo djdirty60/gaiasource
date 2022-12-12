@@ -1,0 +1,15 @@
+#########################################################################################################################
+
+Google's re2 or Facebook's pyre2 could be used to make regexs faster and improve the scraping process performance.
+They seem to be 100s of times faster for certain expressions:
+
+	https://mail.python.org/pipermail/speed/2016-March/000312.html
+	https://lh3lh3.users.sourceforge.net/reb.shtml
+
+Both re2 and pyre2 have the same issues as LXML, in that the module can only be loaded once into a single interpreter.
+More info on this problem can be found in the ReadMe in the lxml directory.
+
+Alternatively, the 'regex' library can be used, which does not have the single-interpreter problem.
+However, 'regex' is about 10-15% slower than the native 're' library, and is therefore not included/used.
+
+#########################################################################################################################

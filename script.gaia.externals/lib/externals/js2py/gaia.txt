@@ -1,0 +1,37 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/Js2Py/#files
+Current Version:	0.71 (2022-07-01)
+Used By:			CloudScraper
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from pyjsparser/from externals.pyjsparser/g' {} \;
+find ./ -type f -exec sed -i -e 's/import pyjsparser.parser/import externals.pyjsparser as pyjsparser/g' {} \;
+find ./ -type f -exec sed -i -e 's/import pyjsparser/import externals.pyjsparser as pyjsparser/g' {} \;
+find ./ -type f -exec sed -i -e 's/from js2py/from externals.js2py/g' {} \;
+find ./ -type f -exec sed -i -e 's/from tzlocal/from externals.tzlocal/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/from six/from externals.six.six/g' {} \;
+find ./ -type f -exec sed -i -e 's/import six/from externals.six import six/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/or g is '"'"'OP_CODE'"'"'/or g == '"'"'OP_CODE'"'"'/g' {} \;
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/import numpy/import numpygaiadummy/g' {} \;
+
+When executing the debug.sh script that calls tools.py -> JavaScript.execute(), everything works fine.
+When exeucting the script again right afterwards, Kodi hangs. Sometimes after some time, Kodi might also just crash.
+This is caused by the numpy import.
+
+Not sure if this is somhow related to:
+
+	https://github.com/python-pillow/Pillow/issues/5320
+	https://github.com/numpy/numpy/issues/18848
+
+"Remove" all numpy imports and let Js2Py run without numpy.
+do not just remove the import statements, since they are often wrapped in a try-catch where variables are set in the excecption part.
+Instead, replace the imports with a fake module to make sure it always fails without ever importing the actual numpy module.
+
+#########################################################################################################################

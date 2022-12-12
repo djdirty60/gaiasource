@@ -1,0 +1,51 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/qrcode/#files
+Current Version:	7.3.1 (2022-04-07)
+Used By:			Gaia
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from qrcode/from externals.qrcode/g' {} \;
+find ./ -type f -exec sed -i -e 's/import qrcode/import externals.qrcode/g' {} \;
+find ./ -type f -exec sed -i -e 's/PilImage(externals.qrcode.image.base.BaseImage)/PilImage(externals.qrcode.image.base.BaseImage)/g' {} \;
+find ./ -type f -exec sed -i -e 's/PymagingImage(qrcode.image.base.BaseImage)/PymagingImage(externals.qrcode.image.base.BaseImage)/g' {} \;
+find ./ -type f -exec sed -i -e 's/from pymaging_png/from externals.pymaging.png/g' {} \;
+find ./ -type f -exec sed -i -e 's/from pymaging/from externals.pymaging/g' {} \;
+
+#########################################################################################################################
+
+Delete "tests" directory.
+
+#########################################################################################################################
+
+In image.pure.py in save(), change the save() function.
+The passed in parameter is the file path, but the pymaging class expects a file object.
+
+        #self._img.save(stream, self.check_kind(kind))
+        if isinstance(stream, str): self._img.save_to_path(stream, self.check_kind(kind))
+        else: self._img.save(stream, self.check_kind(kind))
+
+Also update new_image() and drawrect(), otherwise colors do not work.
+
+        #return Image.new(RGB, self.pixel_size, self.pixel_size, White)
+        from externals.pymaging.colors import Color, RGBA
+        self.back_color = kwargs.get("back_color", "white")
+        self.back_color = Color(red = self.back_color[0], green = self.back_color[1], blue = self.back_color[2], alpha = self.back_color[3])
+        self.fill_color = kwargs.get("fill_color", "black")
+        self.fill_color = Color(red = self.fill_color[0], green = self.fill_color[1], blue = self.fill_color[2], alpha = self.fill_color[3])
+        return Image.new(RGBA, self.pixel_size, self.pixel_size, self.back_color)
+
+And drawrect()
+
+            #self._img.draw(line, Black)
+            self._img.draw(line, self.fill_color)
+
+#########################################################################################################################
+
+In image.pil.py in new_image(), change to RGBA, otherwise the alpha channel does not work.
+
+            #mode = "RGB"
+            mode = "RGBA"
+
+#########################################################################################################################

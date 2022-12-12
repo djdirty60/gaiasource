@@ -1,0 +1,119 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/psutil/#files
+					https://www.piwheels.org/project/psutil/
+					https://pkgs.org/download/python3-psutil (Debian and Ubuntu)
+Current Version:	5.9.3 (2022-11-16) and older versions for older Pythons
+Used By:			Gaia
+
+#########################################################################################################################
+
+PSutil is used by Gaia for detecting the device's hardware for the following features:
+	1. Scraping and provider settings optimization.
+	2. Automatically disable or reduce advanced features on low-end devices for tasks that are processing-intensive.
+	3. Detect the data rate of the network to show the current streaming/download speed when playback is buffering.
+	4. Automatically clean/reduce the cache database or show a warning if storage space runs out.
+
+Some of the above features might still be available on some devices even without PSutil, since there is other fallback
+code that kicks in if PSutil cannot be used. But this fallback code is limited to only common operating systems.
+
+Gaia will first attempt to use the PSutil module installed in the local Python environment used by Kodi, and only use
+these modules if the native module is not available. PSutil is not a pure Python library, but is operating-system
+specific, Python-version specific, and written in C. PSutil therefore needs to be compiled beforehand. There are
+binaries for most systems and versions, but some older ARM architectures might not be supported. The binary libraries
+can be manually verified by comparing their hash to the files from the websites who's URLs are listed above. Note that
+libraries must first be extracted from the Python wheels on the websites before calculating the hash. Also note that not
+all libraries might be from the latests version. Older versions can be found on pypi.org under the "Release history" tab.
+
+The following operating systems and architectures should be supported:
+1. Linux						x86 [32bit + 64bit]		Tested
+2. Windows						x86 [32bit + 64bit]		Tested
+3. Mac							x86 [64bit] and ARM		Untested
+4. ARM [Linux + Android]		Various architectures	Partially tested (at least newer Raspberry and Odroid should work)
+
+It seems it is not possible to import .so files under Android anymore. The following error is thrown:
+	self._handle = _dlopen(self._name, mode)
+    OSError: dlopen failed: library
+		"../script.gaia.externals/lib/externals/psutil/3_8/armhf/_psutil_linux.cpython-38-arm-linux-gnueabihf.so"
+	needed or dlopened by "(unknown)" is not accessible for the namespace "classloader-namespace"
+https://stackoverflow.com/questions/33821502/failed-to-load-native-library-on-android-marshmallow-but-works-on-lollipop
+
+#########################################################################################################################
+
+Note: The package version is Python-subversion specific.
+Note: Not all are v5.8.0, since some architectures only have older versions.
+
+#########################################################################################################################
+
+find ./35/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.win32'\]/g" {} \;
+find ./35/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.win64'\]/g" {} \;
+find ./35/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.macarm'\]/g" {} \;
+find ./35/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.mac64'\]/g" {} \;
+find ./35/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.lin32'\]/g" {} \;
+find ./35/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.lin64'\]/g" {} \;
+find ./35/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.arm64'\]/g" {} \;
+find ./35/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.armv6'\]/g" {} \;
+find ./35/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.armv7'\]/g" {} \;
+find ./35/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.armel'\]/g" {} \;
+find ./35/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.35.armhf'\]/g" {} \;
+
+find ./36/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.win32'\]/g" {} \;
+find ./36/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.win64'\]/g" {} \;
+find ./36/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.macarm'\]/g" {} \;
+find ./36/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.mac64'\]/g" {} \;
+find ./36/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.lin32'\]/g" {} \;
+find ./36/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.lin64'\]/g" {} \;
+find ./36/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.arm64'\]/g" {} \;
+find ./36/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.armv6'\]/g" {} \;
+find ./36/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.armv7'\]/g" {} \;
+find ./36/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.armel'\]/g" {} \;
+find ./36/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.36.armhf'\]/g" {} \;
+
+find ./37/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.win32'\]/g" {} \;
+find ./37/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.win64'\]/g" {} \;
+find ./37/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.macarm'\]/g" {} \;
+find ./37/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.mac64'\]/g" {} \;
+find ./37/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.lin32'\]/g" {} \;
+find ./37/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.lin64'\]/g" {} \;
+find ./37/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.arm64'\]/g" {} \;
+find ./37/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.armv6'\]/g" {} \;
+find ./37/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.armv7'\]/g" {} \;
+find ./37/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.armel'\]/g" {} \;
+find ./37/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.37.armhf'\]/g" {} \;
+
+find ./38/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.win32'\]/g" {} \;
+find ./38/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.win64'\]/g" {} \;
+find ./38/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.macarm'\]/g" {} \;
+find ./38/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.mac64'\]/g" {} \;
+find ./38/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.lin32'\]/g" {} \;
+find ./38/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.lin64'\]/g" {} \;
+find ./38/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.arm64'\]/g" {} \;
+find ./38/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.armv6'\]/g" {} \;
+find ./38/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.armv7'\]/g" {} \;
+find ./38/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.armel'\]/g" {} \;
+find ./38/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.38.armhf'\]/g" {} \;
+
+find ./39/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.win32'\]/g" {} \;
+find ./39/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.win64'\]/g" {} \;
+find ./39/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.macarm'\]/g" {} \;
+find ./39/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.mac64'\]/g" {} \;
+find ./39/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.lin32'\]/g" {} \;
+find ./39/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.lin64'\]/g" {} \;
+find ./39/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.arm64'\]/g" {} \;
+find ./39/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.armv6'\]/g" {} \;
+find ./39/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.armv7'\]/g" {} \;
+find ./39/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.armel'\]/g" {} \;
+find ./39/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.39.armhf'\]/g" {} \;
+
+find ./310/win32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.win32'\]/g" {} \;
+find ./310/win64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.win64'\]/g" {} \;
+find ./310/macarm/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.macarm'\]/g" {} \;
+find ./310/mac64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.mac64'\]/g" {} \;
+find ./310/lin32/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.lin32'\]/g" {} \;
+find ./310/lin64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.lin64'\]/g" {} \;
+find ./310/arm64/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.arm64'\]/g" {} \;
+find ./310/armv6/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.armv6'\]/g" {} \;
+find ./310/armv7/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.armv7'\]/g" {} \;
+find ./310/armel/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.armel'\]/g" {} \;
+find ./310/armhf/ -type f -exec sed -i -e "s/sys.modules\['psutil'\]/sys.modules\['externals.psutil.310.armhf'\]/g" {} \;
+

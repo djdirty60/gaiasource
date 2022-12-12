@@ -1,0 +1,24 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/html5lib/#files
+Current Version:	1.1 (2021-02-23)
+Used By:			BeatifulSoup
+
+#########################################################################################################################
+
+Let Gaia's BeautifulSoup use this version of html5lib.
+On certain Ubuntu distros, the default used html5lib version gives errors
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from six/from externals.six.six/g' {} \;
+find ./ -type f -exec sed -i -e 's/import six/from externals.six import six/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/from webencodings/from externals.webencodings/g' {} \;
+find ./ -type f -exec sed -i -e 's/import webencodings/from externals import webencodings/g' {} \;
+
+#########################################################################################################################
+
+Delete the "tests" directory.
+
+#########################################################################################################################

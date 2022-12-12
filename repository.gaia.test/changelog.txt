@@ -1,0 +1,6 @@
+
+[B][/B]
+- Major version upgrade.
+
+[B]5.0.0[/B]
+- Initial release.

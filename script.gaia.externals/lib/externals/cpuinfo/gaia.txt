@@ -1,0 +1,23 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/py-cpuinfo/#files
+Current Version:	8.0.0 (2022-03-03)
+Used By:			Gaia
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/from cpuinfo/from externals.cpuinfo/g' {} \;
+
+#########################################################################################################################
+
+Remove __main__.py
+
+#########################################################################################################################
+
+Add "shell = True" to all "subprocess" calls, otherwise a CMD window pops up in Windows.
+Commands must be a string, not a list, when shell=True.
+
+Remove all calls to Process(). Although they might be supported, on Windows starting a process just hangs.
+Disable CAN_CALL_CPUID_IN_SUBPROCESS
+
+#########################################################################################################################

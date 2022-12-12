@@ -1,0 +1,15 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/certifi/#files
+Current Version:	2021.5.30 (2021-10-02)
+Used By:			Requests (only on some systems if it is not already in PIP).
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -e 's/_CACERT_CTX = get_path("certifi", "cacert.pem")//g' {} \;
+find ./ -type f -exec sed -i -e 's/_CACERT_PATH = str(_CACERT_CTX.__enter__())/_CACERT_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "cacert.pem")/g' {} \;
+
+find ./ -type f -exec sed -i -e 's/from certifi/from externals.certifi/g' {} \;
+
+#########################################################################################################################
+

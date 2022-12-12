@@ -1,0 +1,42 @@
+#########################################################################################################################
+
+Download:			https://github.com/ywu94/python-text-distance
+Current Version:	0.1.6 (2021-02-23)
+Used By:			Gaia
+
+#########################################################################################################################
+
+find ./ -type f -exec sed -i -z 's/def word_preprocessing/try: unicode('')\nexcept: unicode = str\n\ndef word_preprocessing/g' {} \;
+find ./ -type f -exec sed -i -z 's/(filter(lambda x: not x.isnumeric(), word))/(filter(lambda x: not unicode(x).isnumeric(), word))/g' {} \;
+
+#########################################################################################################################
+
+comment out imports in __init__.py, everything after "import importlib"
+
+#########################################################################################################################
+
+There is another more extensive library called textdistance (see info below).
+However, when making all the replacements to work in Python2, it always returns 1 for the distance/similarity.
+It works with Python 3 however.
+Instead use pytextdist, which works in Python 2 and 3.
+
+https://pypi.org/project/textdistance/
+
+
+find ./ -type f -exec sed -i -e 's/from itertools import zip_longest/try: from itertools import zip_longest\nexcept: from itertools import izip_longest as zip_longest/g' {} \;
+find ./ -type f -exec sed -i -z 's/except: from itertools import izip_longest as zip_longest\nexcept ImportError:\n    from itertools import izip_longest as zip_longest/except: from itertools import izip_longest as zip_longest/g' {} \;
+find ./ -type f -exec sed -i -z 's/try:\n    try: from itertools import zip_longest/try: from itertools import zip_longest/g' {} \;
+
+find ./ -type f -exec sed -i -z 's/try:\n    import numpy\nexcept ImportError:/try:\n    import numpy\nexcept:/g' {} \;
+
+find ./ -type f -exec sed -i -z 's/class Base:/class Base(object):/g' {} \;
+find ./ -type f -exec sed -i -z 's/class LibraryBase:/class LibraryBase(object):/g' {} \;
+
+
+do:
+	grep -ir "super("
+replace each by adding the class and self as parameters.
+eg:
+	super() -> super(Jaro, self)
+
+#########################################################################################################################

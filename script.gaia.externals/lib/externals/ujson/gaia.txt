@@ -1,0 +1,27 @@
+#########################################################################################################################
+
+Download:			https://pypi.org/project/ujson/#files
+					https://www.piwheels.org/project/ujson/
+Current Version:	5.5.0 (2022-11-16) and older versions for older Pythons
+Used By:			Gaia
+
+#########################################################################################################################
+
+The native "json" module in Python is relativly slow at encoding/decoding JSON. Ujson is used by Gaia to improve the
+performance of JSON processing. Depending on the device, Ujson can be 20% - 60% faster than the native "json" module.
+
+Gaia will first attempt to use the Ujson module installed in the local Python environment used by Kodi, and only use
+these modules if the native module is not available. Ujson is not a pure Python library, but is operating-system
+specific, Python-version specific, and written in C. Ujson therefore needs to be compiled beforehand. There are
+binaries for most systems and versions, but some older ARM architectures might not be supported. The binary libraries
+can be manually verified by comparing their hash to the files from the websites who's URLs are listed above. Note that
+libraries must first be extracted from the Python wheels on the websites before calculating the hash. Also note that not
+all libraries might be from the latests version. Older versions can be found on pypi.org under the "Release history" tab.
+
+The following operating systems and architectures should be supported:
+1. Linux						x86 [32bit + 64bit]		Tested
+2. Windows						x86 [32bit + 64bit]		Tested
+3. Mac							x86 [64bit] and ARM		Untested
+4. ARM [Linux + Android]		Various architectures	Partially tested (at least newer Raspberry and Odroid should work)
+
+#########################################################################################################################

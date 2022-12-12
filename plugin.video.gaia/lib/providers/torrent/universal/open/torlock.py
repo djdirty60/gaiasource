@@ -1,0 +1,124 @@
+# -*- coding: utf-8 -*-
+
+'''
+	Gaia Add-on
+	Copyright (C) 2016 Gaia
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'''
+
+from lib.providers.core.html import ProviderHtml, Html, HtmlResults, HtmlResult, HtmlLink, HtmlDiv, HtmlTable, HtmlImage, HtmlArticle, HtmlListUnordered, HtmlListItem
+from lib.modules.tools import Regex
+
+class Provider(ProviderHtml):
+
+	_Link					= ['https://torlock2.com', 'https://torlock.com'] # Main domain is down. torlock2 is still working.
+	_Mirror					= ['https://torrents-proxy.com/torlock/']
+	_Unblock				= {ProviderHtml.UnblockFormat2 : 'torlock', ProviderHtml.UnblockFormat3 : 'torlock'}
+
+	_Path					= '%s/torrents/%s.html'
+
+	_LimitApproval			= 3
+
+	_CategoryMovie			= 'movie'
+	_CategoryShow			= 'television'
+
+	_ParameterPage			= 'page'
+	_ParameterSort			= 'sort'
+	_ParameterSeeds			= 'seeds' # Sorting by seeds does not seem to work.
+
+	_AttributeContent		= 'table-responsive'
+	_AttributeTable			= 'table'
+	_AttributePages			= 'pagination'
+
+	_ExpressionVerified		= '(verified)'
+	_ExpressionNext			= '(next)'
+	_ExpressionApproval		= '(\-?\d+)\s*(?:good|bad)?\s*vote'
+
+	##############################################################################
+	# INITIALIZE
+	##############################################################################
+
+	def initialize(self):
+		ProviderHtml.initialize(self,
+			name					= 'TorLock',
+			description				= '{name} is a well-known {container} site. The site contains results in various languages, but most of them are in English. {name} requests subpages in order to extract the magnet link and other metadata, which substantially increases scraping time.',
+			rank					= 3,
+			performance				= ProviderHtml.PerformanceBad,
+
+			link					= Provider._Link,
+			mirror					= Provider._Mirror,
+			unblock					= Provider._Unblock,
+
+			customVerified			= True,
+
+			streamTime				= '%m/%d/%Y', # Has US date format (month first). Pass custom format in and do not use the built-in formats that place the day first.
+
+			supportMovie			= True,
+			supportShow				= True,
+			supportPack				= True,
+
+			offsetStart				= 1,
+			offsetIncrease			= 1,
+
+			formatEncode			= ProviderHtml.FormatEncodeMinus,
+
+			searchQuery				= {
+										ProviderHtml.RequestMethod : ProviderHtml.RequestMethodGet,
+										ProviderHtml.RequestPath : Provider._Path % (ProviderHtml.TermCategory, ProviderHtml.TermQuery),
+										ProviderHtml.RequestData : {
+											Provider._ParameterPage	: ProviderHtml.TermOffset,
+											Provider._ParameterSort	: Provider._ParameterSeeds,
+										},
+									},
+			searchCategoryMovie		= Provider._CategoryMovie,
+			searchCategoryShow		= Provider._CategoryShow,
+
+			extractOptimizeData		= HtmlDiv(class_ = Provider._AttributeContent, index = -1), # To detect the last page in processOffset().
+			extractOptimizeDetails	= HtmlArticle(),
+			extractList				= [HtmlResults(class_ = Provider._AttributeTable, index = -1)],
+			extractDetails			= [HtmlResult(index = 0), HtmlLink(extract = Html.AttributeHref)],
+			extractLink				= [ProviderHtml.Details, HtmlTable(class_ = Provider._AttributeTable), HtmlLink(href_ = ProviderHtml.ExpressionMagnet, extract = Html.AttributeHref)],
+			extractFileName			= [HtmlResult(index = 0), HtmlLink()],
+			extractFileSize			= [HtmlResult(index = 2)],
+			extractSourceApproval	= [ProviderHtml.Details, Html(extract = [Html.ParseText, Provider._ExpressionApproval])],
+			extractSourceTime		= [HtmlResult(index = 1)],
+			extractSourceSeeds		= [HtmlResult(index = 3)],
+			extractSourceLeeches	= [HtmlResult(index = 4)],
+		)
+
+	##############################################################################
+	# PROCESS
+	##############################################################################
+
+	def processOffset(self, data, items):
+		try:
+			last = self.extractHtml(data, [HtmlListUnordered(class_ = Provider._AttributePages), HtmlLink(index = -1, extract = Html.AttributeAriaLabel)])
+			if not last or not Regex.match(data = last, expression = Provider._ExpressionNext): return ProviderHtml.Skip
+		except: self.logError()
+
+	def processBefore(self, item):
+		if self.customVerified():
+			verified = str(self.extractHtml(item, [HtmlResult(index = 0), HtmlImage(title_ = Provider._ExpressionVerified)]))
+			if not verified: return ProviderHtml.Skip
+
+	def processSourceApproval(self, value, item, details = None, entry = None):
+		if details:
+			result = ProviderHtml.ApprovalDefault
+			try:
+				value = float(value.replace(',', ''))
+				result += ((1 - result) * (value / Provider._LimitApproval))
+			except: pass
+			return result
+		return value
