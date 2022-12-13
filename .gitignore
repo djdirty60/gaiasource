@@ -1,0 +1,4 @@
+__pycache__/
+__gaia__/
+*.py[co]
+*$py.class
