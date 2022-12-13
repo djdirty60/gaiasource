@@ -1,4 +1,9 @@
 
+[B]6.0.3 (2022.12.13)[/B]
+- Fixed button focus in windows.
+- Improved Android detection.
+- Fixed adding artwork to a list item.
+
 [B]6.0.2 (2022.12.12)[/B]
 - Fixed module import label.
 

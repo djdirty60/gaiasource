@@ -1174,6 +1174,14 @@ class Networker(object):
 					else: errorMessage = errorDescription
 				except: errorMessage = errorDescription
 
+				#gaiaremove
+				# Add full description for Android "_bootlocale" errors.
+				try:
+					if 'bootlocale' in errorDescription:
+						tools.Logger.error()
+						errorMessage = errorDescription
+				except: pass
+
 				self.mResponse['success'] = False
 				self.mResponse['error']['type'] = errorType
 				self.mResponse['error']['code'] = errorCode

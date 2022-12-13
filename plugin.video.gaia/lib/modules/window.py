@@ -3386,7 +3386,8 @@ class WindowStep(WindowProgress):
 		count = self.mNavigationCount
 		if not count: count = 0
 
-		navigation = [i for i in self.mNavigation if self._visible(i)]
+		try: navigation = [i for i in self.mNavigation if self._visible(i)]
+		except: navigation = None
 		if not navigation: return None
 
 		self.mNavigationCount = len(navigation)
@@ -3422,7 +3423,8 @@ class WindowStep(WindowProgress):
 
 			if self.mNavigationBack:
 				self.mNavigationRow = 1
-				self.mNavigationIndex = len([i for i in self.mNavigation if self._visible(i)]) - 2
+				try: self.mNavigationIndex = len([i for i in self.mNavigation if self._visible(i)]) - 2
+				except: pass
 				self.focus(self.mNavigationBack[0])
 				return True
 

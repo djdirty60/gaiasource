@@ -1284,7 +1284,11 @@ class MetaImage(object):
 						images[type] = 'https://images.fanart.tv/fanart/' + path
 				'''
 
-				item.setArt(images)
+				# On Android (Nvidia Shield) I noticed this error once:
+				#	'TypeError: argument "value" for method "setArt" must be unicode or str
+				# Remove None values. In worst case, use a try-catch to prevent the error from propagating.
+				try: item.setArt({k : v for k, v in images.items() if v})
+				except: Logger.error()
 
 			# NB: Although deprecated, this is still used by most skins today (2022).
 			# Most skins will use this value above the one from setArt().

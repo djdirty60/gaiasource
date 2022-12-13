@@ -51,7 +51,9 @@ def get_cache_dir():
     Try to follow the XDG standard, but if that doesn't work fallback to the package directory
     http://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
     """
-    cache_dir = os.environ.get("TLDEXTRACT_CACHE", None)
+
+	# GAIA
+    '''cache_dir = os.environ.get("TLDEXTRACT_CACHE", None)
     if cache_dir is not None:
         return cache_dir
 
@@ -64,9 +66,15 @@ def get_cache_dir():
     if xdg_cache_home is not None:
         return os.path.join(xdg_cache_home, "python-tldextract", get_pkg_unique_identifier())
 
-    # fallback to trying to use package directory itself
+	# fallback to trying to use package directory itself
     return os.path.join(os.path.dirname(__file__), ".suffix_cache/")
 
+	'''
+
+    import xbmcvfs
+    cache_dir = xbmcvfs.translatePath('special://temp/gaia/locks/')
+    if cache_dir: return cache_dir
+    else: return os.path.join(os.path.dirname(__file__), '.suffix_cache/')
 
 class DiskCache:
     """Disk _cache that only works for jsonable values"""

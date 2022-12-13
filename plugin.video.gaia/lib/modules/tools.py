@@ -7563,25 +7563,32 @@ class Platform(object):
 			system = platform.system().lower()
 			try: distribution = self.detectDistribution()
 			except: distribution = None
+
 			if Platform.SystemAndroid in system or Platform.SystemAndroid in system or (distribution and len(distribution) > 0 and Tools.isString(distribution[0]) and Platform.SystemAndroid in distribution[0].lower()):
 				return True
+
+			# Nvidia Shield (with Android TV) is detected as Linux.
+			# A more robust solution seems to be to check the file path, eg: /storage/emulated/0/Android/data/net.kodinerds.maven.kodi/files/.kodi/addons/...
+			path = File.translatePath('special://temp/')
+			if path and '/android/' in path.lower(): return True
+
 			if system == Platform.SystemLinux:
 				id = ''
 				if 'ANDROID_ARGUMENT' in os.environ:
 					id = True
-				if id == None or id == '':
+				if not id:
 					try: id = Subprocess.open('getprop ril.serialnumber').trim()
 					except: pass
-				if id == None or id == '':
+				if not id:
 					try: id = Subprocess.open('getprop ro.serialno').trim()
 					except: pass
-				if id == None or id == '':
+				if not id:
 					try: id = Subprocess.open('getprop sys.serialnumber').trim()
 					except: pass
-				if id == None or id == '':
+				if not id:
 					try: id = Subprocess.open('getprop gsm.sn1').trim()
 					except: pass
-				if not id == None and not id == '':
+				if id:
 					try: return not 'not found' in id
 					except: return True
 		except: pass
