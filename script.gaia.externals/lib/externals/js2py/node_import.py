@@ -4,14 +4,19 @@ import subprocess, os, codecs, glob
 from .evaljs import translate_js, DEFAULT_HEADER
 from .translators.friendly_nodes import is_valid_py_name
 from externals.six import six
-import tempfile
+#import tempfile # GAIA
 import hashlib
 import random
 
 DID_INIT = False
-DIRNAME = tempfile.mkdtemp()
-PY_NODE_MODULES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'py_node_modules')
+#DIRNAME = tempfile.mkdtemp() # GAIA
+#PY_NODE_MODULES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'py_node_modules') # GAIA
 
+# GAIA
+import xbmcvfs
+DIRNAME = xbmcvfs.translatePath('special://temp/gaia/externals/js2py/')
+xbmcvfs.mkdirs(DIRNAME)
+PY_NODE_MODULES_PATH = os.path.join(xbmcvfs.translatePath('special://home'), 'addons', 'script.gaia.externals', 'lib', 'externals', 'js2py', 'py_node_modules')
 
 def _init():
     global DID_INIT

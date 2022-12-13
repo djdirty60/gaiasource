@@ -1,4 +1,7 @@
 
+[B]6.0.4 (2022.12.13)[/B]
+- Fixed Android processor detection.
+
 [B]6.0.3 (2022.12.13)[/B]
 - Fixed button focus in windows.
 - Improved Android detection.

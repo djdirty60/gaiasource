@@ -87,7 +87,15 @@ class User_Agent():
             #user_agents = xbmcgui.Window(10000).getProperty(property)
             user_agents = None
             if not user_agents:
-                fp = open(os.path.join(os.path.dirname(__file__), 'browsers.json'), 'r')
+                #fp = open(os.path.join(os.path.dirname(__file__), 'browsers.json'), 'r') # Does not work on Android (Nvidia Shield).
+
+                try:
+                	import xbmcvfs
+                	path = os.path.join(xbmcvfs.translatePath('special://home'), 'addons', 'script.gaia.externals', 'lib', 'externals', 'cloudscraper', 'user_agent', 'browsers.json')
+                except:
+                	path = os.path.join(os.path.dirname(__file__), 'browsers.json')
+
+                fp = open(path, 'r')
                 user_agents = fp.read()
                 fp.close()
                 #xbmcgui.Window(10000).setProperty(property, user_agents.encode('utf-8'))

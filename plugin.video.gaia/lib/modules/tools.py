@@ -7559,6 +7559,11 @@ class Platform(object):
 	@classmethod
 	def detectAndroid(self):
 		try:
+			# Nvidia Shield (with Android TV) is detected as Linux.
+			# A more robust solution seems to be to check the file path, eg: /storage/emulated/0/Android/data/net.kodinerds.maven.kodi/files/.kodi/addons/...
+			path = File.translatePath('special://temp/')
+			if path and '/android/' in path.lower(): return True
+
 			import platform
 			system = platform.system().lower()
 			try: distribution = self.detectDistribution()
@@ -7566,11 +7571,6 @@ class Platform(object):
 
 			if Platform.SystemAndroid in system or Platform.SystemAndroid in system or (distribution and len(distribution) > 0 and Tools.isString(distribution[0]) and Platform.SystemAndroid in distribution[0].lower()):
 				return True
-
-			# Nvidia Shield (with Android TV) is detected as Linux.
-			# A more robust solution seems to be to check the file path, eg: /storage/emulated/0/Android/data/net.kodinerds.maven.kodi/files/.kodi/addons/...
-			path = File.translatePath('special://temp/')
-			if path and '/android/' in path.lower(): return True
 
 			if system == Platform.SystemLinux:
 				id = ''
@@ -8965,7 +8965,7 @@ class Hardware(object):
 					if result: return result
 
 				# Linux
-				elif 'linux' in system or 'unix' in system:
+				elif 'linux' in system or 'unix' in system or Platform.detectAndroid():
 					data = Subprocess.output('cat /proc/cpuinfo').strip()
 					if data:
 						result = Regex.extract(data = data, expression = 'model\s*name\s*:\s*(.*?)[\n\r]')
@@ -9259,7 +9259,7 @@ class Hardware(object):
 						except: pass
 
 				# Linux
-				elif 'linux' in system or 'unix' in system:
+				elif 'linux' in system or 'unix' in system or Platform.detectAndroid():
 					result = Subprocess.output('lscpu').strip()
 					if result:
 						result = Regex.extract(data = result, expression = 'cpu\s*mhz.*?([\d\.]+)')

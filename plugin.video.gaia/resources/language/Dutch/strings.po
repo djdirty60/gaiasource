@@ -1,6 +1,7 @@
 # Addon Name: Gaia
 # Addon id: plugin.video.gaia
 # Addon Provider: Gaia
+# NB: Not created or maintained by Gaia. These translations were submitted by a user.
 msgid ""
 msgstr ""
 

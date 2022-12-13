@@ -72,7 +72,7 @@ def get_cache_dir():
 	'''
 
     import xbmcvfs
-    cache_dir = xbmcvfs.translatePath('special://temp/gaia/locks/')
+    cache_dir = xbmcvfs.translatePath('special://temp/gaia/externals/tldextract/')
     if cache_dir: return cache_dir
     else: return os.path.join(os.path.dirname(__file__), '.suffix_cache/')
 
